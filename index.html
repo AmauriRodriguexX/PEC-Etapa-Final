@@ -91,7 +91,7 @@
           <span class="font-verdana">Centro</span>
           <div class="story-container font-verdana"
             onclick="openVideoModal('Uvaldo Baron'); onKnowTheStory('Uvaldo Baron')">
-            <span>Conoce mi historia</span>
+            <span>Conoce su historia</span>
             <img src="./assets/images/icon_play.png" alt="Botón play">
           </div>
         </div>
@@ -109,7 +109,7 @@
           <span class="font-verdana">Centro Norte</span>
           <div class="story-container font-verdana"
             onclick="openVideoModal('Uvaldo Baron'); onKnowTheStory('Uvaldo Baron')">
-            <span>Conoce mi historia</span>
+            <span>Conoce su historia</span>
             <img src="./assets/images/icon_play.png" alt="Botón play">
           </div>
         </div>
@@ -127,7 +127,7 @@
           <span class="font-verdana">Metro</span>
           <div class="story-container font-verdana"
             onclick="openVideoModal('Uvaldo Baron'); onKnowTheStory('Uvaldo Baron')">
-            <span>Conoce mi historia</span>
+            <span>Conoce su historia</span>
             <img src="./assets/images/icon_play.png" alt="Botón play">
           </div>
         </div>
@@ -145,7 +145,7 @@
           <span class="font-verdana">Noreste</span>
           <div class="story-container font-verdana"
             onclick="openVideoModal('Uvaldo Baron'); onKnowTheStory('Uvaldo Baron')">
-            <span>Conoce mi historia</span>
+            <span>Conoce su historia</span>
             <img src="./assets/images/icon_play.png" alt="Botón play">
           </div>
         </div>
@@ -163,7 +163,7 @@
           <span class="font-verdana">Occidente</span>
           <div class="story-container font-verdana"
             onclick="openVideoModal('Uvaldo Baron'); onKnowTheStory('Uvaldo Baron')">
-            <span>Conoce mi historia</span>
+            <span>Conoce su historia</span>
             <img src="./assets/images/icon_play.png" alt="Botón play">
           </div>
         </div>
@@ -181,7 +181,7 @@
           <span class="font-verdana">Pacífico</span>
           <div class="story-container font-verdana"
             onclick="openVideoModal('Uvaldo Baron'); onKnowTheStory('Uvaldo Baron')">
-            <span>Conoce mi historia</span>
+            <span>Conoce su historia</span>
             <img src="./assets/images/icon_play.png" alt="Botón play">
           </div>
         </div>
@@ -199,7 +199,7 @@
           <span class="font-verdana">Península</span>
           <div class="story-container font-verdana"
             onclick="openVideoModal('Uvaldo Baron'); onKnowTheStory('Uvaldo Baron')">
-            <span>Conoce mi historia</span>
+            <span>Conoce su historia</span>
             <img src="./assets/images/icon_play.png" alt="Botón play">
           </div>
         </div>
@@ -217,13 +217,11 @@
           <span class="font-verdana">Sur</span>
           <div class="story-container font-verdana"
             onclick="openVideoModal('Uvaldo Baron'); onKnowTheStory('Uvaldo Baron')">
-            <span>Conoce mi historia</span>
+            <span>Conoce su historia</span>
             <img src="./assets/images/icon_play.png" alt="Botón play">
           </div>
         </div>
       </div>
-
-
     </div>
   </section>
   <section id="winners">
@@ -286,8 +284,7 @@
     <div class="description-container">
       <div>
         <p class="subtitle">Galería de fotos</p>
-        <p class="description">Cada imagen cuenta una historia, explora nuestra galería de fotos y comparte la
-          inspiración que hace brillar a esta edición del premio.</p>
+        <p class="description">Cada imagen cuenta una historia, disfruta de los mejores momentos de nuestros ganadores de Premio Emprendedores 2024.</p>
       </div>
     </div>
     <div class="image-count">
@@ -466,12 +463,12 @@
     document.addEventListener('DOMContentLoaded', function () {
       const votesContainer = document.querySelector('.votes_container');
       const competitorContainers = votesContainer.querySelectorAll('.competitor_container');
-
+  
       // Solo ejecuta este código en dispositivos móviles
       if (window.innerWidth <= 768) {
         const dotsContainer = document.createElement('div');
         dotsContainer.className = 'dots_container';
-
+  
         // Crear un dot por cada tarjeta
         competitorContainers.forEach((item, index) => {
           const dot = document.createElement('span');
@@ -479,27 +476,28 @@
           if (index === 0) dot.classList.add('active'); // Activar el primer punto
           dotsContainer.appendChild(dot);
         });
-
+  
         // Insertar los dots después del contenedor de votos
         votesContainer.parentNode.appendChild(dotsContainer);
-
+  
         // Función para actualizar los dots según la posición de desplazamiento
         function updateDots() {
           const scrollPosition = votesContainer.scrollLeft;
           const itemWidth = votesContainer.offsetWidth;
           const index = Math.round(scrollPosition / itemWidth);
           const dots = dotsContainer.querySelectorAll('.dot');
-
+  
           dots.forEach((dot, idx) => {
             dot.classList.toggle('active', idx === index);
           });
         }
-
+  
         // Evento de scroll para actualizar los dots
         votesContainer.addEventListener('scroll', updateDots);
-
+  
         // Permitir que los dots sean clicables
-        dotsContainer.querySelectorAll('.dot').forEach((dot, idx) => {
+        const dots = dotsContainer.querySelectorAll('.dot');
+        dots.forEach((dot, idx) => {
           dot.addEventListener('click', function () {
             votesContainer.scrollTo({
               left: idx * votesContainer.offsetWidth,
@@ -510,6 +508,7 @@
       }
     });
   </script>
+  
   <script src="js/script.js?v=1.0.0"></script>
   <script src="js/home-events.js?v=1.0.0"></script>
 </body>

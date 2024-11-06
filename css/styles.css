@@ -146,8 +146,14 @@ main p{
   font-size: 18px;
   font-style: normal;
   font-weight: 500;
-  line-height: 1.75rem;
+  line-height: 28px;
   color: var(--charcoal-gray);
+}
+@media (max-width: 768px) {
+  main p{
+    font-size: 16px;
+    font-weight: 500;
+  }
 }
 
 span{
@@ -342,6 +348,7 @@ main div {
   width: 19.46881rem;
   height: 18.22613rem;
   border-radius: 3.39169rem;
+  margin-bottom: 40px;
 }
 
 #winners .group .competitor-group .competitor .competitor-img {
@@ -668,7 +675,6 @@ hr {
 }
 
 #share .socials img{
-  border-radius: 0.4375rem;
   border: 0;
   margin:0;
 }
@@ -680,13 +686,27 @@ hr {
 h1 {
   font-weight: 500;
   color: var(--deep-pink);
-  font-size: 2.25rem;
+  font-size: 36px;
   font-style: normal;
   font-weight: 500;
   line-height: 2.625rem; 
   font-family: "Bree";
   text-align: start;
   margin-top: 1.5rem;
+}
+@media (max-width: 768px) {
+  h1 {
+    font-size: 36px;
+    line-height: 42px;
+  }
+  .subtitle {
+    font-size: 30px;
+    line-height: 42px;
+  }
+  .description {
+    font-size: 16px;
+    line-height: 28px;
+}
 }
 
 footer {
@@ -752,7 +772,7 @@ footer address {
 
 #video-modal .modal_content {
   background-color: white;
-  padding: 0 0 16px 0;
+  padding: 0 0 40px 0;
   border-radius: 8px;
   width: 90%; /* Ajusta el ancho según sea necesario */
   max-width: 90%; /* Para mejorar la adaptación en pantallas pequeñas */
@@ -1171,8 +1191,9 @@ footer address {
     text-align: center;
     margin-bottom: 2rem;
     margin-top: 0;
-    font-size: 3rem;
+    font-size: 48px;
     font-weight: 500;
+    line-height: 56px;
   }
 
   .description {
@@ -1259,8 +1280,8 @@ footer address {
     font-weight: 700;
     cursor: pointer;
     user-select: none;
-    width: 22px;
-    height: 22px;
+    width: 24px;
+    height: 24px;
     padding: 12px;
     border-radius: 50%;
 }
@@ -1618,10 +1639,10 @@ footer address {
 
   h1 {
     font-family: Bree;
-    font-size: 4rem;
+    font-size: 64px;
     font-style: normal;
     font-weight: 500;
-    line-height: 4.5rem;
+    line-height: 72px;
   }
 
   .hr-container {
@@ -1874,18 +1895,25 @@ footer address {
 }
 
 .votes_container {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  justify-items: center;
-  margin-bottom: 80px;
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch; /* Suaviza el desplazamiento en iOS */
 }
 
-.competitor_container {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  column-gap: 25px;
+/* Opcional: Ocultar la barra de desplazamiento para una apariencia más limpia */
+.votes_container::-webkit-scrollbar {
+  display: none;
 }
+
+/* Estilo para cada tarjeta */
+.competitor_container {
+  flex: 0 0 100%; /* Cada tarjeta ocupa el 100% del ancho del contenedor */
+  scroll-snap-align: center; /* Las tarjetas se alinean al centro al hacer scroll */
+  box-sizing: border-box; /* Asegura que el padding y border se incluyan en el ancho total */
+}
+
 
 .framework {
   position: relative;
