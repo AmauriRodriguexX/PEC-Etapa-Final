@@ -1254,9 +1254,11 @@ footer address {
     font-weight: 700;
     cursor: pointer;
     user-select: none;
-    padding: 10px;
+    width: 22px;
+    height: 22px;
+    padding: 12px;
     border-radius: 50%;
-  }
+}
   
   #winners .carousel-navigation{
     margin-left: 5rem;
