@@ -348,7 +348,7 @@ main div {
   width: 19.46881rem;
   height: 18.22613rem;
   border-radius: 3.39169rem;
-  margin-bottom: 40px;
+  margin-bottom: 40px !important;
 }
 
 #winners .group .competitor-group .competitor .competitor-img {
