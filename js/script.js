@@ -238,27 +238,35 @@ const groups = {
   Participacion_familiar: [
       {
           number: "1",
-          name: "Reyna Arroyo",
-          image: "./assets/images/reyna.png",
-          description: "Reyna Arrollo inspiró a muchas familias a colaborar y emprender juntas, destacando en la categoría de Participación Familiar",
+          name: "Martha Ávalos",
+          image: "./assets/images/ganadores/martha.png",
+          description: "Su historia es un ejemplo de emprendimiento y unión familiar, a través de su negocio Martha inspira a muchas familias a luchar por sus sueños.",
           videoId: "8VE4moocPTo"
       }
   ],
-  Comercio_digital: [
+  Producción: [
     {
       number: "2",
-      name: "Carolina Rojas",
-      image: "./assets/images/carolina.png",
-      description: "Carolina Rojas inspiró a muchas familias a colaborar y emprender juntas, destacando en la categoría de Comercio Digital.Agua purificada",
+      name: "Julio Molina",
+      image: "./assets/images/ganadores/julio.png",
+      description: "Su historia nos confirma que el éxito de un negocio se basa en la convicción de creer que los sueños se pueden cumplir.",
       videoId: "dCouUDxPKrU"
     }
   ],
   Servicio: [
     {
-        number: "5",
-        name: "Idania Medina",
-        image: "./assets/images/idania.png",
-        description: "Idania Medina inspiró a muchas familias a colaborar y emprender juntas, destacando en la categoría de Servicio.",
+        number: "3",
+        name: "Patricia Beltrán",
+        image: "./assets/images/ganadores/patricia.png",
+        description: "Su historia es un ejemplo de servicio cálido y de excelencia. Patricia nos comparte la pasión que siente al atender a sus clientes y el amor que pone en cada platillo que prepara.",
+        videoId: "BQl-VY834S8"
+    }
+  ],Comercio : [
+    {
+        number: "4",
+        name: "Divvani Lizárraga",
+        image: "./assets/images/ganadores/divvani.png",
+        description: "Su historia es un ejemplo de perseverancia y trabajo en equipo para lograr un negocio exitoso. Divanni nos inspira a siempre dar un extra.",
         videoId: "BQl-VY834S8"
     }
   ]

@@ -81,7 +81,7 @@
       <div class="competitor_container">
         <div class="framework">
           <div class="competitor_image">
-            <img src="./assets/images/ganadores/reyna.png" class="img-responsive-person" alt="Participante">
+            <img src="./assets/images/ganadores/patricia.png" class="img-responsive-person" alt="Participante">
           </div>
           <div class="competitor_name">
             <span class="font-verdana">Patricia Beltrán</span>
@@ -228,34 +228,59 @@
   </section>
   <section id="winners">
     <div class="description-container">
-      <div>
-        <p class="subtitle">
-          Conoce a los ganadores
-        </p>
-        <p class="description">
-          Descubre a los talentosos emprendedores que se destacaron en el Premio Emprendedores 2024 de Compartamos Banco
-        </p>
-      </div>
+        <div>
+            <p class="subtitle">Categorías especiales</p>
+            <p class="description">
+                Además, reconocimos a aquellos clientes que destacaron por su historia dentro de las siguientes categorías.
+            </p>
+        </div>
     </div>
+
     <div class="carousel-container">
-      <div class="carousel font-inter">
-        <button onclick="onChooseGroup('Participación familiar')" class="carousel-button"
-          data-group="Participacion_familiar">Participación familiar</button>
-        <button onclick="onChooseGroup('Comercio digital')" class="carousel-button"
-          data-group="Comercio_digital">Comercio digital</button>
-        <button onclick="onChooseGroup('Servicio')" class="carousel-button" data-group="Servicio">Servicio</button>
-      </div>
+        <div class="carousel font-inter">
+            <button onclick="onChooseGroup('Participación familiar')" class="carousel-button" data-group="Participacion_familiar">Participación familiar</button>
+            <button onclick="onChooseGroup('Comercio digital')" class="carousel-button" data-group="Producción">Producción</button>
+            <button onclick="onChooseGroup('Servicio')" class="carousel-button" data-group="Servicio">Servicio</button>
+            <button onclick="onChooseGroup('Servicio')" class="carousel-button" data-group="Comercio">Comercio</button>
+        </div>
     </div>
+
     <div class="group">
-      <div class="competitor-group">
-      </div>
+        <div class="competitor-group">
+            <div class="competitor">
+                <!-- Contenedor de Imagen -->
+                <div class="competitor-img-container">
+                    <img src="./assets/images/reyna.png" alt="Reyna Arroyo" class="competitor-img" width="150" height="60">
+                </div>
+
+                <!-- Información del Competidor -->
+                <div class="competitor-info">
+                    <h2 class="competitor-name">Reyna Arroyo</h2>
+                    <p class="competitor-group-name">Participación familiar</p>
+                    <p id="competitor-description" class="description">
+                        Reyna Arroyo inspiró a muchas familias a colaborar y emprender juntas, destacando en la categoría de Participación Familiar.
+                    </p>
+
+                    <!-- Botón para Ver la Historia -->
+                    <div class="button-container" onclick="openModal('8VE4moocPTo', 'Reyna Arroyo', 'Reyna Arrollo inspiró a muchas familias a colaborar y emprender juntas, destacando en la categoría de Participación Familiar', '0', 'Participación familiar')">
+                        <button class="watch-video">
+                            <p>Conoce su historia</p>
+                            <div class="play-button">
+                                <img src="./assets/images/play-video.png" alt="Play">
+                            </div>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+
     <div class="carousel-navigation">
-      <div id="prev-button" class="nav-arrow left-arrow" onclick="prevImage()">&#8592;</div>
-      <div id="next-button" class="nav-arrow right-arrow" onclick="nextImage()">&#8594;</div>
+        <div id="prev-button" class="nav-arrow left-arrow" onclick="prevImage()">&#8592;</div>
+        <div id="next-button" class="nav-arrow right-arrow" onclick="nextImage()">&#8594;</div>
     </div>
-    
-  </section>
+</section>
+
 
   <section id="gallery">
     <div class="description-container">

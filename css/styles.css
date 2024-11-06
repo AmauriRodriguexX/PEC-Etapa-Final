@@ -561,6 +561,7 @@ main div {
   background-color: var(--deep-pink);
   padding: 0.25rem 0.69rem;
   color: white;
+  font-size: 14px;
   font-family: Inter;
 }
 
@@ -670,6 +671,10 @@ hr {
   border-radius: 0.4375rem;
   border: 0;
   margin:0;
+}
+
+.img-cont-space {
+  margin-left: 8px;
 }
 
 h1 {
@@ -1650,7 +1655,6 @@ footer address {
 
   #video-modal .modal_content {
     background-color: white;
-    margin: 5% auto;
     padding: 32px 16px 32px 16px;
     border-radius: 8px;
     width: 45%;
@@ -2049,3 +2053,4 @@ footer address {
    
   }
 }
+
