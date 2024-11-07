@@ -140,6 +140,7 @@ header a {
 footer {
   padding: 40px 20px;
   margin-bottom: 40px;
+  border-top: 1px solid #e3e3e3;
 }
 
 footer > div .info {
@@ -407,7 +408,7 @@ footer address {
 #gallery-modal .modal_content .fullgallery-item:nth-child(4),
 #gallery-modal .modal_content .fullgallery-item:nth-child(5),
 #gallery-modal .modal_content .fullgallery-item:nth-child(8) {
-  width: 7.8125rem;
+  width: 100%;
 }
 
 #gallery-modal .modal_content .fullgallery-item:nth-child(2),

@@ -222,6 +222,8 @@
           </div>
         </div>
       </div>
+
+
     </div>
   </section>
   <section id="winners">
@@ -288,9 +290,7 @@
       </div>
     </div>
     <div class="image-count">
-      <div class="container">
         <div class="count"><span id="image-count"></span> <img src="./assets/images/img-icon.png"></div>
-      </div>
     </div>
     <div class="gallery">
       <div class="gallery-item">
@@ -463,12 +463,12 @@
     document.addEventListener('DOMContentLoaded', function () {
       const votesContainer = document.querySelector('.votes_container');
       const competitorContainers = votesContainer.querySelectorAll('.competitor_container');
-  
+
       // Solo ejecuta este código en dispositivos móviles
       if (window.innerWidth <= 768) {
         const dotsContainer = document.createElement('div');
         dotsContainer.className = 'dots_container';
-  
+
         // Crear un dot por cada tarjeta
         competitorContainers.forEach((item, index) => {
           const dot = document.createElement('span');
@@ -476,28 +476,27 @@
           if (index === 0) dot.classList.add('active'); // Activar el primer punto
           dotsContainer.appendChild(dot);
         });
-  
+
         // Insertar los dots después del contenedor de votos
         votesContainer.parentNode.appendChild(dotsContainer);
-  
+
         // Función para actualizar los dots según la posición de desplazamiento
         function updateDots() {
           const scrollPosition = votesContainer.scrollLeft;
           const itemWidth = votesContainer.offsetWidth;
           const index = Math.round(scrollPosition / itemWidth);
           const dots = dotsContainer.querySelectorAll('.dot');
-  
+
           dots.forEach((dot, idx) => {
             dot.classList.toggle('active', idx === index);
           });
         }
-  
+
         // Evento de scroll para actualizar los dots
         votesContainer.addEventListener('scroll', updateDots);
-  
+
         // Permitir que los dots sean clicables
-        const dots = dotsContainer.querySelectorAll('.dot');
-        dots.forEach((dot, idx) => {
+        dotsContainer.querySelectorAll('.dot').forEach((dot, idx) => {
           dot.addEventListener('click', function () {
             votesContainer.scrollTo({
               left: idx * votesContainer.offsetWidth,
@@ -508,7 +507,6 @@
       }
     });
   </script>
-  
   <script src="js/script.js?v=1.0.0"></script>
   <script src="js/home-events.js?v=1.0.0"></script>
 </body>
