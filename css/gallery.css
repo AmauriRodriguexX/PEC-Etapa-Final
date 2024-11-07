@@ -52,12 +52,19 @@
 }
 
 header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 72px;
   box-shadow: 0px 3px 6px #00000029;
+  background-color: #fff; /* Asegúrate de tener un color de fondo */
+  z-index: 1000; /* Asegúrate de que esté encima de otros elementos */
 }
+
 
 header img {
   object-fit: cover;
@@ -74,6 +81,22 @@ header a {
   color: var(--deep-pink);
   margin-right: 1rem;
 }
+
+/* Ocultar el texto en mobile */
+@media (max-width: 768px) {
+  .back span.text {
+    display: none; /* Oculta el texto 'Regresar' en mobile */
+  }
+}
+
+/* Mostrar el texto en desktop */
+@media (min-width: 769px) {
+  .back span.text {
+    display: inline; /* Muestra el texto 'Regresar' en desktop */
+  }
+}
+
+
 
 .hide-on-mobile {
   display: none;
@@ -140,7 +163,6 @@ header a {
 footer {
   padding: 40px 20px;
   margin-bottom: 40px;
-  border-top: 1px solid #e3e3e3;
 }
 
 footer > div .info {
@@ -374,6 +396,7 @@ footer address {
   width: 100%;
   align-items: center;
   color: var(--deep-pink);
+  font-size: 24px;
 }
 
 #gallery-modal .modal_content .closable_container img {
@@ -512,16 +535,13 @@ footer address {
   }
 
   header {
-    justify-content: space-between;
+    justify-content: center;
     position: fixed;
     width: 100%;
     background-color: white;
     z-index: 998;
   }
 
-  header img {
-    margin-left: 120px;
-  }
 
   header a {
     display: block;
@@ -615,9 +635,12 @@ footer address {
   }
 
   #gallery-modal .modal_content .gallery {
-    width: 73rem;
-    max-width: 80%;
-  }
+    width: 100%;
+    max-width: 68%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 
   #gallery-modal .modal_content .fullgallery-item:nth-child(1), 
   #gallery-modal .modal_content .fullgallery-item:nth-child(3), 
@@ -636,4 +659,18 @@ footer address {
   #gallery-modal .modal_content .fullgallery-item {
     height: 16.0625rem;
   }
+}
+
+hr {
+  border: 1px solid #D8DADA;
+}
+
+.hr-container hr {
+  width: 88%;
+}
+
+.hr-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }

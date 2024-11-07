@@ -11,6 +11,7 @@
   --ligth-gray: #C0C0C0;
 }
 
+
 .font-inter {
   font-family: "Inter", sans-serif;
 }
@@ -42,12 +43,19 @@
 
 /* MARK: MOBILE */
 header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 72px;
   box-shadow: 0px 3px 6px #00000029;
+  background-color: #fff; /* Asegúrate de tener un color de fondo */
+  z-index: 1000; /* Asegúrate de que esté encima de otros elementos */
 }
+
 
 header img {
   object-fit: cover;
@@ -188,6 +196,13 @@ main div {
   bottom: 0;
 }
 
+@media only screen and (max-width: 768px) {
+  .no-watch {
+      display: none !important;
+  }
+}
+
+
 .subtitle {
   font-family: Bree;
   font-size: 1.875rem;
@@ -297,6 +312,8 @@ main div {
 #winners .carousel-container .carousel {
   white-space: nowrap;
   overflow-x: hidden;
+  margin-right: 24px;
+
 }
 
 #winners .carousel-container .carousel-button {
@@ -333,7 +350,7 @@ main div {
 }
 
 #winners .group .competitor-group {
-  width: 87%;
+  width: 90%;
 }
 
 #winners .group .group-title {
@@ -345,10 +362,10 @@ main div {
 
 #winners .group .competitor-group .competitor {
   border: 2px solid var(--deep-pink);
-  width: 19.46881rem;
+  width: 100%;
   height: 18.22613rem;
   border-radius: 3.39169rem;
-  margin-bottom: 40px !important;
+  margin-bottom: 80px !important;
 }
 
 #winners .group .competitor-group .competitor .competitor-img {
@@ -358,11 +375,11 @@ main div {
 #winners .group .competitor-group .competitor .competitor-img img {
   margin-left: -0.5rem;
   margin-top: 0.5rem;
-  width: 19rem;
-  height: 18rem;
+  width: 100%;
+  height: 100%;
   z-index: 1;
   border: 3px solid white;
-  border-radius: 3.39169rem;
+  border-radius: 94px;
 }
 
 #winners .group .competitor-group .actions .history .competitor-name {
@@ -1895,25 +1912,20 @@ footer address {
 }
 
 .votes_container {
-  display: flex;
-  overflow: hidden;
-  position: relative;
-  width: 100%;
-  touch-action: pan-x; /* Permite el desplazamiento horizontal táctil */
-  will-change: transform; /* Mejora el rendimiento de las transformaciones */
-  transition: transform 0.5s ease-in-out; /* Transición suave */
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  justify-items: center;
+  margin-bottom: 80px;
 }
 
-/* Opcional: Ocultar la barra de desplazamiento para una apariencia más limpia */
-.votes_container::-webkit-scrollbar {
-  display: none;
-}
+
 
 /* Estilo para cada tarjeta */
 .competitor_container {
-  flex: 0 0 100%; /* Cada tarjeta ocupa el 100% del ancho del contenedor */
-  scroll-snap-align: center; /* Las tarjetas se alinean al centro al hacer scroll */
-  box-sizing: border-box; /* Asegura que el padding y border se incluyan en el ancho total */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  column-gap: 25px;
 }
 
 
