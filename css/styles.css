@@ -432,11 +432,12 @@ main div {
   width: 80%;
   padding: 1.1rem .56rem;
   font-weight: 700;
-  margin-top: 1rem;
+  margin: 1rem auto 0;
   font-family: "inter";
   color: var(--charcoal-gray);
   background-color: transparent;
 }
+
 
 #winners .group .competitor-group .actions .watch-video p {
   color: var(--deep-pink) !important;
