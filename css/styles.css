@@ -53,7 +53,7 @@ header {
   height: 72px;
   box-shadow: 0px 3px 6px #00000029;
   background-color: #fff; /* Asegúrate de tener un color de fondo */
-  z-index: 1000; /* Asegúrate de que esté encima de otros elementos */
+  z-index: 999; /* Asegúrate de que esté encima de otros elementos */
 }
 
 
@@ -417,10 +417,12 @@ main div {
   padding-top: 1rem;
 }
 
-#winners .group .competitor-group .actions .button-container {
-  display: flex;
-  justify-content: center;
+#gallery-modal .modal_content .gallery {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Crea dos columnas de igual tamaño */
+  gap: 16px; /* Espacio entre elementos, ajusta según tus necesidades */
 }
+
 
 #winners .group .competitor-group .actions .watch-video {
   display: flex;
