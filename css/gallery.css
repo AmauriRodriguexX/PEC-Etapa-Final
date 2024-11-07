@@ -427,7 +427,6 @@ footer address {
   #gallery-modal .modal_content .gallery {
     display: grid;
     grid-template-columns: repeat(2, 1fr); /* 2 columnas en mobile */
-    gap: 10px; /* Espacio entre elementos, ajusta según prefieras */
   }
 }
 
@@ -435,7 +434,7 @@ footer address {
 #gallery-modal .modal_content .fullgallery-item {
   overflow: hidden;
   position: relative;
-  height: 9.9375rem;
+  height: auto;
   border-radius: 0.5rem;
   margin-bottom: 0.5rem;
 }
