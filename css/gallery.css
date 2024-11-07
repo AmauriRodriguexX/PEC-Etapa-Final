@@ -439,13 +439,6 @@ footer address {
   margin-bottom: 0.5rem;
 }
 
-#gallery-modal .modal_content .fullgallery-item:nth-child(2),
-#gallery-modal .modal_content .fullgallery-item:nth-child(3),
-#gallery-modal .modal_content .fullgallery-item:nth-child(6),
-#gallery-modal .modal_content .fullgallery-item:nth-child(7) {
-  width: 10.9375rem;
-}
-
 #gallery-modal .modal_content .fullgallery-item {
   margin-right: 1.25rem;
   margin-bottom: 1.25rem;
@@ -465,6 +458,12 @@ footer address {
   height: 100%;
   object-fit: cover;
   cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  #gallery-modal .modal_content .fullgallery-item img {
+      height: 100%; /* Altura automática en mobile */
+  }
 }
 
 #gallery-modal .modal_content .button-container {
