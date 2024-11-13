@@ -300,7 +300,7 @@ footer address {
   justify-content: center;
   border-radius: 34.5px;
   background-color: var(--deep-pink);
-  /* max-width: 248px; */
+  max-width: -webkit-fill-available;
   margin-inline: auto;
 }
 
