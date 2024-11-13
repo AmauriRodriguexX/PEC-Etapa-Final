@@ -241,7 +241,7 @@ const groups = {
           name: "Martha Ávalos",
           image: "./assets/images/ganadores/martha.png",
           description: "Su historia es un ejemplo de emprendimiento y unión familiar, a través de su negocio Martha inspira a muchas familias a luchar por sus sueños.",
-          videoId: "8VE4moocPTo"
+          videoId: "_a4ZYnZNgaw"
       }
   ],
   Producción: [
@@ -250,7 +250,7 @@ const groups = {
       name: "Julio Molina",
       image: "./assets/images/ganadores/julio.png",
       description: "Su historia nos confirma que el éxito de un negocio se basa en la convicción de creer que los sueños se pueden cumplir.",
-      videoId: "dCouUDxPKrU"
+      videoId: "iMoSHxwZ3mU"
     }
   ],
   Servicio: [
@@ -259,7 +259,7 @@ const groups = {
         name: "Patricia Beltrán",
         image: "./assets/images/ganadores/patricia.png",
         description: "Su historia es un ejemplo de servicio cálido y de excelencia. Patricia nos comparte la pasión que siente al atender a sus clientes y el amor que pone en cada platillo que prepara.",
-        videoId: "BQl-VY834S8"
+        videoId: "WtXq6drhODA"
     }
   ],Comercio : [
     {
@@ -267,7 +267,7 @@ const groups = {
         name: "Divvani Lizárraga",
         image: "./assets/images/ganadores/divvani.png",
         description: "Su historia es un ejemplo de perseverancia y trabajo en equipo para lograr un negocio exitoso. Divanni nos inspira a siempre dar un extra.",
-        videoId: "BQl-VY834S8"
+        videoId: "eUwpz8ljxiM"
     }
   ]
 };
@@ -316,48 +316,51 @@ document.addEventListener('DOMContentLoaded', async function () {
   function updateGroupContent(groupName,groupNumber,groupData, disabled) {
       competitorGroup.innerHTML = '';
 
-      groupData.forEach((competitor,index) => {
-          competitorGroup.innerHTML += `
-              <div class="competitor">
-                  <div class="competitor-img">
-                      <img src="${competitor.image}" alt="${competitor.name}" width="150" height="60" />
-                  </div>
+      groupData.forEach((competitor, index) => {
+        competitorGroup.innerHTML += `
+          <div class="competitor">
+            <div class="competitor-img" onclick="openModal('${competitor.videoId}', '${competitor.name}', '${competitor.description}', '${index}', '${groupName}')">
+              <img src="${competitor.image}" alt="${competitor.name}" width="150" height="60" />
+            </div>
+          </div>
+          <div class="actions">
+            <div class="history">
+              <p class="competitor-name" onclick="openModal('${competitor.videoId}', '${competitor.name}', '${competitor.description}', '${index}', '${groupName}')">
+                ${competitor.name}
+              </p>
+              <p class="competitor-group-name">${groupName}</p>
+              <p id="competitor-description" class="description">${competitor.description}</p>
+              <div class="button-container" 
+                onclick="openModal('${competitor.videoId}', '${competitor.name}', '${competitor.description}', '${index}', '${groupName}')">
+                <button class="watch-video">
+                  <p>Conoce su historia</p>
+                  <div class="play-button"><img src="./assets/images/play-video.png" alt="bubble" /></div>
+                </button>
               </div>
-                  <div class="actions">
-                      <div class="history">
-                          <p class="competitor-name">${competitor.name}</p>
-                          <p class="competitor-group-name">${groupName}</p>
-                          <p id="competitor-description" class="description">${competitor.description}</p>
-                          <div class="button-container"
-                            onclick="openModal('${competitor.videoId}', '${competitor.name}', '${competitor.description}', '${index}', '${groupName}')"
-                          >
-                              <button class="watch-video">
-                                <p>Conoce su historia</p><div class="play-button"><img src="./assets/images/play-video.png" alt="bubble" /></div>
-                              </button>
-                          </div>
-                      </div> 
-                  </div>
-          `;
-
-          const descriptions = document.querySelectorAll('#competitor-description');
-  
-          let maxHeight = 0;
-        
-          descriptions.forEach(description => {
-            if (description.offsetHeight > maxHeight) {
-              maxHeight = description.offsetHeight;
-            }
-          });
-        
-          descriptions.forEach(description => {
-            description.style.height = maxHeight + 'px';
-          });
+            </div> 
+          </div>
+        `;
+      
+        const descriptions = document.querySelectorAll('#competitor-description');
+      
+        let maxHeight = 0;
+      
+        descriptions.forEach(description => {
+          if (description.offsetHeight > maxHeight) {
+            maxHeight = description.offsetHeight;
+          }
+        });
+      
+        descriptions.forEach(description => {
+          description.style.height = maxHeight + 'px';
+        });
       });
+      
   }
 });
 
 const $carouselLeftArrow = document.getElementById('prev-button');
-const $carouselRightArrow = document.getElementById('next-button')
+const $carouselRightArrow = document.getElementById('next-button');
 
 const updateCarouselArrow = (index) => {
   if(index == 0) {

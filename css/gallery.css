@@ -416,11 +416,19 @@ footer address {
 #gallery-modal .modal_content .gallery {
   display: flex;
   flex-wrap: wrap;
+  
 }
 
 #gallery-modal .modal_content .gallery {
-  display: flex;
-  flex-wrap: wrap;
+    column-count: 3; /* Número de columnas (ajusta según lo necesites) */
+    column-gap: 10px; /* Espacio entre columnas */
+}
+
+#gallery-modal .modal_content .gallery img {
+    width: 100%;
+    margin-bottom: 10px;
+    display: block;
+    break-inside: avoid; /* Evita que las imágenes se corten entre columnas */
 }
 
 @media (max-width: 768px) {

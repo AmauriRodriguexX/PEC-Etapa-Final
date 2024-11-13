@@ -4,15 +4,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <!-- Metadatos para Compartamos Banco -->
   <meta name="description"
-    content="Los momentos más inspiradores de Premio Emprendedores 2024. Conoce a estos talentosos emprendedores que nos han inspirado día con día para ser mejores.">
-  <meta property="og:description"
-    content="Los momentos más inspiradores de Premio Emprendedores 2024. Conoce a estos talentosos emprendedores que nos han inspirado día con día para ser mejores.">
-  <meta property="og:type" content="website">
-  <meta name="keywords"
-    content="premio emprendedores, convocatorias para emprendedores, apoyo a emprendedores, proyectos emprendedores, concurso emprendedor, proyecto emprendedor sustentable">
-  <title>¡Revive los momentos!. Premio Emprendedores Compartamos 2024</title>
+    content="Descubre a nuestros aposionados ganadores del Premio Emprendedores 2024. ¡Déjate motivar para alcanzar tus propias metas y únete a la celebración de su éxito!" />
+  <title>¡Tenemos ganadores!. Premio Emprendedores Compartamos 2024</title>
   <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
   <link rel="stylesheet" href="css/gallery.css?v=1.0.0" />
   <script src="https://www.youtube.com/iframe_api"></script>
@@ -39,16 +33,31 @@
   <!-- End Google Tag Manager (noscript) -->
   <header>
     <img src="./assets/images/logo_CB.png" height="40" width="100" alt="Logo CB" style="cursor: pointer"
-      onclick="(function() { window.location.href = 'https://www.compartamos.com.mx/compartamos'; })()" />
+      onclick="goToHome()" />
+    <div class="hamburger-menu">
+      <div class="hamburger-icon" id="hamburger-icon">
+        <img src="./assets/images/icon-nav.png" alt="nav" width="32" height="32" style="cursor: pointer" />
+      </div>
+      <nav class="mobile-nav" id="mobile-nav">
+        <ul>
+          <li><a href="ganadores.html">Ganadores</a></li>
+          <li><a href="acerca-de.html">Acerca de</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="hide-on-mobile">
+      <a class="font-inter" onclick="goToWinners()" style="cursor: pointer">
+        Ganadores
+      </a>
+      <a class="font-inter" onclick="goToAbout()" style="cursor: pointer">
+        Acerca de
+      </a>
+    </div>
   </header>
   <div id="gallery-modal">
     <div class="modal_content">
       <div onclick="goToHome()" class="closable_container">
-        <span class="back">
-          &#10094;&nbsp;<span class="text">Regresar</span>
-        </span>
-
-
+        <span class="back">&#10094 &nbsp;Regresar</span>
       </div>
       <div class="subtitle-container">
         <p class="subtitle">Galería de fotos</p>
@@ -78,6 +87,74 @@
         <div class="fullgallery-item">
           <img src="./assets/images/gallery-1.png" alt="Imagen 1" data-index="0">
         </div>
+        <div class="fullgallery-item">
+          <img src="./assets/images/gallery-1.png" alt="Imagen 1" data-index="0">
+        </div>
+        <div class="fullgallery-item">
+          <img src="./assets/images/gallery-4.png" alt="Imagen 2" data-index="1">
+        </div>
+        <div class="fullgallery-item">
+          <img src="./assets/images/gallery-3.png" alt="Imagen 3" data-index="2">
+        </div>
+        <div class="fullgallery-item">
+          <img src="./assets/images/gallery-4.png" alt="Imagen 3" data-index="3">
+        </div>
+        <div class="fullgallery-item">
+          <img src="./assets/images/gallery-5.png" alt="Imagen 3" data-index="4">
+        </div>
+        <div class="fullgallery-item">
+          <img src="./assets/images/gallery-6.png" alt="Imagen 3" data-index="4">
+        </div>
+        <div class="fullgallery-item">
+          <img src="./assets/images/gallery-7.png" alt="Imagen 3" data-index="4">
+        </div>
+        <div class="fullgallery-item">
+          <img src="./assets/images/gallery-1.png" alt="Imagen 1" data-index="0">
+        </div>
+        <div class="fullgallery-item">
+          <img src="./assets/images/gallery-1.png" alt="Imagen 1" data-index="0">
+        </div>
+        <div class="fullgallery-item">
+          <img src="./assets/images/gallery-4.png" alt="Imagen 2" data-index="1">
+        </div>
+        <div class="fullgallery-item">
+          <img src="./assets/images/gallery-3.png" alt="Imagen 3" data-index="2">
+        </div>
+        <div class="fullgallery-item">
+          <img src="./assets/images/gallery-4.png" alt="Imagen 3" data-index="3">
+        </div>
+        <div class="fullgallery-item">
+          <img src="./assets/images/gallery-5.png" alt="Imagen 3" data-index="4">
+        </div>
+        <div class="fullgallery-item">
+          <img src="./assets/images/gallery-6.png" alt="Imagen 3" data-index="4">
+        </div>
+        <div class="fullgallery-item">
+          <img src="./assets/images/gallery-7.png" alt="Imagen 3" data-index="4">
+        </div>
+        <div class="fullgallery-item">
+          <img src="./assets/images/gallery-1.png" alt="Imagen 1" data-index="0">
+        </div><div class="fullgallery-item">
+          <img src="./assets/images/gallery-1.png" alt="Imagen 1" data-index="0">
+        </div>
+        <div class="fullgallery-item">
+          <img src="./assets/images/gallery-4.png" alt="Imagen 2" data-index="1">
+        </div>
+        <div class="fullgallery-item">
+          <img src="./assets/images/gallery-3.png" alt="Imagen 3" data-index="2">
+        </div>
+        <div class="fullgallery-item">
+          <img src="./assets/images/gallery-4.png" alt="Imagen 3" data-index="3">
+        </div>
+        <div class="fullgallery-item">
+          <img src="./assets/images/gallery-5.png" alt="Imagen 3" data-index="4">
+        </div>
+        <div class="fullgallery-item">
+          <img src="./assets/images/gallery-6.png" alt="Imagen 3" data-index="4">
+        </div>
+       
+       
+        
       </div>
     </div>
   </div>
@@ -112,17 +189,12 @@
         </div>
       </div>
     </div>
-
-  </div>
-  <div class="hr-container">
-    <hr>
   </div>
   <footer>
-
     <div>
       <div class="info">
         <img src="./assets/images/logo_CB.png" alt="Logo Compartamos Banco" width="150" height="60" class="logo"
-          onclick="(function() { window.location.href = 'https://www.compartamos.com.mx/compartamos'; })()" />
+          onclick="goToCB()" />
         <div class="font-inter">
           <span>
             Una empresa de
@@ -154,36 +226,6 @@
       Sur 1458, Actipan, Benito Juárez, 03230 Ciudad de México, CDMX
     </address>
   </footer>
-  <!-- Script para registrar eventos -->
-  <script>
-    function registrarEvento(redSocial) {
-      dataLayer.push({
-        'event': 'share_page',
-        'CDCategory': 'compartir_pagina',
-        'CDLabel': redSocial,
-        'CDFunnel': 'PE Etapa Final 2024'
-      });
-    }
-
-    function registrarEventoVideo(participante) {
-      dataLayer.push({
-        'event': 'view_story',
-        'CDCategory': 'Ver historia',
-        'CDAction': 'play_video',
-        'CDLabel': participante,
-        'CDFunnel': 'PE Etapa Final 2024'
-      });
-    }
-
-    function registrarEventoGaleria(imagen) {
-      dataLayer.push({
-        'event': 'view_gallery_image',
-        'CDCategory': 'Galería de fotos',
-        'CDLabel': imagen,
-        'CDFunnel': 'PE Etapa Final 2024'
-      });
-    }
-  </script>
   <script src="js/gallery.js?v=1.0.0"></script>
   <script src="js/gallery-events.js?v=1.0.0"></script>
 </body>
