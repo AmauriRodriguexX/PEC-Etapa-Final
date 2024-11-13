@@ -414,8 +414,8 @@ footer address {
 }
 
 #gallery-modal .modal_content .gallery {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
   
 }
 
@@ -503,14 +503,14 @@ footer address {
   #gallery-modal .modal_content .fullgallery-item:nth-child(3), 
   #gallery-modal .modal_content .fullgallery-item:nth-child(6), 
   #gallery-modal .modal_content .fullgallery-item:nth-child(8) {
-    width: 9.5rem !important;
+    width: auto !important;
   }
 
   #gallery-modal .modal_content .fullgallery-item:nth-child(2), 
   #gallery-modal .modal_content .fullgallery-item:nth-child(4), 
   #gallery-modal .modal_content .fullgallery-item:nth-child(5), 
   #gallery-modal .modal_content .fullgallery-item:nth-child(7) {
-    width: 19.5rem !important;
+    width: auto !important;
   }
 
   #gallery-modal .modal_content .fullgallery-item {
@@ -523,7 +523,7 @@ footer address {
   #gallery-modal .modal_content .fullgallery-item:nth-child(3), 
   #gallery-modal .modal_content .fullgallery-item:nth-child(6), 
   #gallery-modal .modal_content .fullgallery-item:nth-child(8) {
-    width: 7.5rem !important;
+    width: auto !important;
   }
 
   #gallery-modal .modal_content .fullgallery-item:nth-child(2), 
