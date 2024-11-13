@@ -861,8 +861,9 @@ footer address {
 
 #gallery-view-modal .modal_content {
   position: absolute;
-  left: 10%;
-  top: 10%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   background-color: transparent;
   margin: 5% auto;
   padding: 0 0 16px 0;
