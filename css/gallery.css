@@ -52,7 +52,7 @@
 }
 
 header {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
@@ -466,6 +466,7 @@ footer address {
   height: 100%;
   object-fit: cover;
   cursor: pointer;
+  transition: transform 0.3s ease;
 }
 
 @media (max-width: 768px) {
@@ -548,7 +549,7 @@ footer address {
 
   header {
     justify-content: center;
-    position: fixed;
+    position: absolute;
     width: 100%;
     background-color: white;
     z-index: 998;
@@ -649,27 +650,28 @@ footer address {
   #gallery-modal .modal_content .gallery {
     width: 100%;
     max-width: 68%;
-    margin-left: auto;
-    margin-right: auto;
-}
+    margin: 0 auto; /* Centrado automático */
+    padding: 0 10px; /* Añade un pequeño padding lateral para evitar que las imágenes toquen los bordes */
+    box-sizing: border-box; /* Asegura que el padding se incluya dentro del ancho total */
+  }
 
 
   #gallery-modal .modal_content .fullgallery-item:nth-child(1), 
   #gallery-modal .modal_content .fullgallery-item:nth-child(3), 
   #gallery-modal .modal_content .fullgallery-item:nth-child(6), 
   #gallery-modal .modal_content .fullgallery-item:nth-child(8) {
-    width: 11.5rem;
+    width: auto;
   }
 
   #gallery-modal .modal_content .fullgallery-item:nth-child(2), 
   #gallery-modal .modal_content .fullgallery-item:nth-child(4), 
   #gallery-modal .modal_content .fullgallery-item:nth-child(5), 
   #gallery-modal .modal_content .fullgallery-item:nth-child(7) {
-    width: 22.5rem;
+    width: auto;
   }
 
   #gallery-modal .modal_content .fullgallery-item {
-    height: 16.0625rem;
+    height: 195px;
   }
 }
 
@@ -677,12 +679,12 @@ hr {
   border: 1px solid #D8DADA;
 }
 
-.hr-container hr {
-  width: 88%;
-}
-
 .hr-container {
   width: 100%;
   display: flex;
   justify-content: center;
+}
+
+.hr-container hr {
+  width: 88%;
 }
