@@ -652,7 +652,7 @@ footer address {
     max-width: 68%;
     margin: 0 auto; /* Centrado automático */
     padding: 0 10px; /* Añade un pequeño padding lateral para evitar que las imágenes toquen los bordes */
-    box-sizing: border-box; /* Asegura que el padding se incluya dentro del ancho total */
+    box-sizing: content-box; /* Asegura que el padding se incluya dentro del ancho total */
   }
 
 
