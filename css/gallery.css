@@ -530,11 +530,11 @@ footer address {
   #gallery-modal .modal_content .fullgallery-item:nth-child(4), 
   #gallery-modal .modal_content .fullgallery-item:nth-child(5), 
   #gallery-modal .modal_content .fullgallery-item:nth-child(7) {
-    width: 17.5rem !important;
+    width: auto !important;
   }
 
   #gallery-modal .modal_content .fullgallery-item {
-    height: 11.0625rem !important;
+    height: auto !important;
   }
 }
 
@@ -649,11 +649,51 @@ footer address {
 
   #gallery-modal .modal_content .gallery {
     width: 100%;
-    max-width: 68%;
-    margin: 0 auto; /* Centrado automático */
-    padding: 0 10px; /* Añade un pequeño padding lateral para evitar que las imágenes toquen los bordes */
-    box-sizing: content-box; /* Asegura que el padding se incluya dentro del ancho total */
-  }
+    margin: 0 auto;
+    padding: 0 10px;
+    box-sizing: border-box;
+}
+
+/* Pantallas extra grandes (1600px en adelante) */
+@media (min-width: 1600px) {
+    #gallery-modal .modal_content .gallery {
+        max-width: 60%; /* Más espacio en pantallas extra grandes */
+        padding: 0 20px;
+    }
+}
+
+/* Pantallas grandes (1024px a 1599px) */
+@media (min-width: 1024px) and (max-width: 1599px) {
+    #gallery-modal .modal_content .gallery {
+        max-width: 68%; /* Ajuste centrado en pantallas grandes */
+        padding: 0 15px;
+    }
+}
+
+/* Pantallas medianas grandes (768px a 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+    #gallery-modal .modal_content .gallery {
+        max-width: 85%; /* Más espacio en tablets y laptops pequeñas */
+        padding: 0 15px;
+    }
+}
+
+/* Pantallas medianas pequeñas (480px a 767px) */
+@media (min-width: 480px) and (max-width: 767px) {
+    #gallery-modal .modal_content .gallery {
+        max-width: 90%; /* Pantallas entre tablets y smartphones */
+        padding: 0 10px;
+    }
+}
+
+/* Pantallas pequeñas (menor a 480px) */
+@media (max-width: 479px) {
+    #gallery-modal .modal_content .gallery {
+        max-width: 95%; /* Ancho casi completo en móviles pequeños */
+        padding: 0 8px;
+    }
+}
+
 
 
   #gallery-modal .modal_content .fullgallery-item:nth-child(1), 
