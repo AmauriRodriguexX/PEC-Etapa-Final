@@ -249,6 +249,17 @@
         'CDFunnel': 'PE Etapa Final 2024'
       });
     }
+
+    function registrarEventoCompartir(Compartir) {
+      dataLayer.push({
+        'event': 'galeria_PEC',
+        'CDCategory': 'Galería etapa final PEC',
+        'CDAction': 'compartir',
+        'CDLabel': 'facebook',
+        'CDFunnel': 'PE Etapa Final 2024',
+        'CDValue': '/assets/images/imagen_final_ganadores.png'
+      });
+    }
     // Inicialización de dataLayer
     window.dataLayer = window.dataLayer || [];
 
@@ -279,7 +290,6 @@
       console.log("Evento de WhatsApp registrado en dataLayer.");
       // Lógica adicional para compartir en WhatsApp
     }
-
   </script>
   <script src="js/gallery.js?v=1.0.0"></script>
   <script src="js/gallery-events.js?v=1.0.0"></script>
