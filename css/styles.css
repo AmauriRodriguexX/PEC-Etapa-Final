@@ -1757,7 +1757,7 @@ footer address {
   }
   
   #gallery-view-modal .modal_content {
-    top: 0;
+    top: 40%;
   }
 
   #gallery-view-modal .modal_content img {
