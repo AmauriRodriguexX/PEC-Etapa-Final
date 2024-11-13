@@ -220,36 +220,47 @@
       Sur 1458, Actipan, Benito Juárez, 03230 Ciudad de México, CDMX
     </address>
   </footer>
-    <!-- Script para registrar eventos -->
-    <script>
-      function registrarEvento(redSocial) {
-        dataLayer.push({
-          'event': 'share_page',
-          'CDCategory': 'compartir_pagina',
-          'CDLabel': redSocial,
-          'CDFunnel': 'PE Etapa Final 2024'
-        });
-      }
-  
-      function registrarEventoVideo(participante) {
-        dataLayer.push({
-          'event': 'view_story',
-          'CDCategory': 'Ver historia',
-          'CDAction': 'play_video',
-          'CDLabel': participante,
-          'CDFunnel': 'PE Etapa Final 2024'
-        });
-      }
-  
-      function registrarEventoGaleria(imagen) {
-        dataLayer.push({
-          'event': 'view_gallery_image',
-          'CDCategory': 'Galería de fotos',
-          'CDLabel': imagen,
-          'CDFunnel': 'PE Etapa Final 2024'
-        });
-      }
-    </script>
+  <!-- Script para registrar eventos -->
+  <script>
+    function registrarEvento(redSocial) {
+      dataLayer.push({
+        'event': 'share_page',
+        'CDCategory': 'compartir_pagina',
+        'CDLabel': redSocial,
+        'CDFunnel': 'PE Etapa Final 2024'
+      });
+    }
+
+    function registrarEventoVideo(participante) {
+      dataLayer.push({
+        'event': 'view_story',
+        'CDCategory': 'Ver historia',
+        'CDAction': 'play_video',
+        'CDLabel': participante,
+        'CDFunnel': 'PE Etapa Final 2024'
+      });
+    }
+
+    function registrarEventoGaleria(imagen) {
+      dataLayer.push({
+        'event': 'view_gallery_image',
+        'CDCategory': 'Galería de fotos',
+        'CDLabel': imagen,
+        'CDFunnel': 'PE Etapa Final 2024'
+      });
+    }
+    function registrarEvento() {
+      dataLayer.push({
+        'event': 'galeria_PEC',
+        'cdCategory': 'Galería etapa final PEC',
+        'cdAction': 'compartir_foto',
+        'cdLabel': 'facebook',
+        'cdFunnel': 'PE Etapa Final 2024',
+        'cdValue': '/assets/images/galeria/imagen_final_ganadores.png' // Ruta correcta
+      });
+    }
+
+  </script>
   <script src="js/gallery.js?v=1.0.0"></script>
   <script src="js/gallery-events.js?v=1.0.0"></script>
 </body>
