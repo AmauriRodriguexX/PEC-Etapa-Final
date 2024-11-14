@@ -2149,3 +2149,26 @@ footer address {
 }
 
 
+
+
+.share_dropdown {
+  display: none; /* Oculto por defecto */
+  position: absolute;
+  background-color: white;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  padding: 10px;
+  border-radius: 5px;
+  z-index: 1;
+  width: 200px;
+}
+
+.share_dropdown a {
+  color: #333;
+  text-decoration: none;
+  padding: 8px 12px;
+  display: block;
+}
+
+.share_dropdown a:hover {
+  background-color: #f0f0f0;
+}

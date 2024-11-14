@@ -438,17 +438,18 @@
         </div>
         <div class="intersection"></div>
         <div class="share_wrapper">
-          <div class="share_container" onclick="share()">
-            <img src="./assets/images/share-icon.png" alt="Icono compartir" />
-            <span class="font-inter">Compartir</span>
+          <div class="share_container" onclick="toggleDropdown()">
+              <img src="./assets/images/share-icon.png" alt="Icono compartir" />
+              <span class="font-inter">Compartir</span>
           </div>
-        
-          <!-- Dropdown for unsupported browsers -->
+      
+          <!-- Dropdown para compartir -->
           <div id="share-dropdown" class="font-inter share_dropdown">
-            <a href="#" onclick="shareInFacebook()">Compartir en Facebook</a>
-            <a href="#" onclick="shareInWhatsapp()">Compartir en Whatsapp</a>
+              <a href="#" onclick="shareInFacebook()">Compartir en Facebook</a>
+              <a href="#" onclick="shareInWhatsapp()">Compartir en WhatsApp</a>
           </div>
-        </div>
+      </div>
+      
       </div>
     </div>
   </div>
@@ -725,6 +726,35 @@
         }
       }
     });
+
+  </script>
+
+  <script>
+    function toggleDropdown() {
+    const dropdown = document.getElementById("share-dropdown");
+    dropdown.style.display = dropdown.style.display === "none" || dropdown.style.display === "" ? "block" : "none";
+}
+
+function shareInFacebook() {
+    const url = encodeURIComponent(window.location.href);
+    const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
+    window.open(facebookUrl, '_blank');
+}
+
+function shareInWhatsapp() {
+    const url = encodeURIComponent(window.location.href);
+    const whatsappUrl = `https://wa.me/?text=${url}`;
+    window.open(whatsappUrl, '_blank');
+}
+
+// Cierra el dropdown si se hace clic fuera de él
+window.addEventListener("click", function(event) {
+    const dropdown = document.getElementById("share-dropdown");
+    const shareContainer = document.querySelector(".share_container");
+    if (!shareContainer.contains(event.target)) {
+        dropdown.style.display = "none";
+    }
+});
 
   </script>
   <script src="js/script.js?v=1.0.0"></script>
