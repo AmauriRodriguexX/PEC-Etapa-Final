@@ -573,7 +573,31 @@ const GALLERY_IMAGES = [
   "./assets/images/gallery-5.png",
   "./assets/images/gallery-6.png",
   "./assets/images/gallery-7.png",
+  "./assets/images/gallery-8.png",
+  "./assets/images/gallery-9.png",
+  "./assets/images/gallery-10.png",
+  "./assets/images/gallery-11.png",
+  "./assets/images/gallery-12.png",
+  "./assets/images/gallery-13.png",
+  "./assets/images/gallery-14.png",
+  "./assets/images/gallery-15.png",
+  "./assets/images/gallery-16.png",
+  "./assets/images/gallery-17.png",
+  "./assets/images/gallery-18.png",
+  "./assets/images/gallery-19.png",
+  "./assets/images/gallery-20.png",
+  "./assets/images/gallery-21.png",
+  "./assets/images/gallery-22.png",
+  "./assets/images/gallery-23.png",
+  "./assets/images/gallery-24.png",
+  "./assets/images/gallery-25.png",
+  "./assets/images/gallery-26.png",
+  "./assets/images/gallery-27.png",
+  "./assets/images/gallery-28.png",
+  "./assets/images/gallery-29.png",
+  "./assets/images/gallery-30.png",
 ];
+
 
 /** @type {HTMLDivElement | null} */
 const $GALLERY_MODAL = document.getElementById("gallery-modal");
