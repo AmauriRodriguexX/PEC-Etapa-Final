@@ -3,8 +3,8 @@ const goToWinners = () => {
 }
 
 const goToHome = () => {
-  window.location.href = 'index.html';
-}
+  window.location.href = 'index.html'; // Redirige a la página de inicio
+};
 
 const goToAbout = () => {
   window.location.href = 'acerca-de.html';

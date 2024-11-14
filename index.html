@@ -312,7 +312,7 @@
     </div>
     <div class="gallery">
       <div class="gallery-item">
-        <img src="./assets/images/gallery-1.jpg" alt="Imagen 1" data-index="0">
+        <img src="./assets/images/gallery-1.jpg" alt="Imagen 1" data-index="0" onclick="openModalGallery(this)">
       </div>
       <div class="gallery-item">
         <img src="./assets/images/gallery-2.jpg" alt="Imagen 2" data-index="1">
@@ -494,6 +494,7 @@
         <div class="fullgallery-item">
           <img src="./assets/images/gallery-1.png" alt="Imagen 1" data-index="0">
         </div>
+        
       </div>
     </div>
   </div>
@@ -742,33 +743,66 @@
 
   <!--compartir media-->
   <script>
-    function toggleDropdown() {
-      const dropdown = document.getElementById("share-dropdown");
-      dropdown.style.display = dropdown.style.display === "none" || dropdown.style.display === "" ? "block" : "none";
-    }
-
-    function shareInFacebook() {
-      const url = encodeURIComponent(window.location.href);
-      const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
-      window.open(facebookUrl, '_blank');
-    }
-
-    function shareInWhatsapp() {
-      const url = encodeURIComponent(window.location.href);
-      const whatsappUrl = `https://wa.me/?text=${url}`;
-      window.open(whatsappUrl, '_blank');
-    }
-
-    // Cierra el dropdown si se hace clic fuera de él
-    window.addEventListener("click", function (event) {
-      const dropdown = document.getElementById("share-dropdown");
-      const shareContainer = document.querySelector(".share_container");
-      if (!shareContainer.contains(event.target)) {
-        dropdown.style.display = "none";
+    (function() {
+      let currentImageUrl = ''; // Variable para almacenar la URL completa de la imagen actual
+  
+      // Función para abrir el modal de la galería y establecer la imagen seleccionada
+      function openModalGallery(imageElement) {
+        const galleryImage = document.getElementById("gallery-image");
+        galleryImage.src = imageElement.src; // Muestra la imagen seleccionada en el modal
+  
+        // Construir la URL completa de la imagen de forma dinámica
+        const imagePath = new URL(imageElement.getAttribute('src'), window.location.origin);
+        currentImageUrl = imagePath.href; // URL completa de la imagen seleccionada
+  
+        document.getElementById("gallery-view-modal").style.display = "block";
       }
-    });
-
+  
+      // Función para cerrar el modal de la galería
+      function closeModalGallery() {
+        document.getElementById("gallery-view-modal").style.display = "none";
+      }
+  
+      // Función para mostrar/ocultar el menú de compartir
+      function toggleDropdown() {
+        const dropdown = document.getElementById("share-dropdown");
+        dropdown.style.display = dropdown.style.display === "none" || dropdown.style.display === "" ? "block" : "none";
+      }
+  
+      // Función para compartir en Facebook la imagen actual del modal
+      function shareInFacebook() {
+        const url = encodeURIComponent(currentImageUrl || window.location.href);
+        const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
+        window.open(facebookUrl, '_blank');
+      }
+  
+      // Función para compartir en WhatsApp la imagen actual del modal
+      function shareInWhatsapp() {
+        const url = encodeURIComponent(currentImageUrl || window.location.href);
+        const whatsappUrl = `https://wa.me/?text=${url}`;
+        window.open(whatsappUrl, '_blank');
+      }
+  
+      // Cierra el menú de compartir si se hace clic fuera de él
+      window.addEventListener("click", function (event) {
+        const dropdown = document.getElementById("share-dropdown");
+        const shareContainer = document.querySelector(".share_container");
+        if (!shareContainer.contains(event.target)) {
+          dropdown.style.display = "none";
+        }
+      });
+  
+      // Expone las funciones necesarias en el ámbito global
+      window.openModalGallery = openModalGallery;
+      window.closeModalGallery = closeModalGallery;
+      window.toggleDropdown = toggleDropdown;
+      window.shareInFacebook = shareInFacebook;
+      window.shareInWhatsapp = shareInWhatsapp;
+  
+    })(); // IIFE para encapsular el código
   </script>
+  
+  
 
   <!--compartir pagina-->
   <script>

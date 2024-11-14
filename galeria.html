@@ -373,52 +373,76 @@
 
   <!--compartir media-->
   <script>
-    let currentImageUrl = ''; // Variable para almacenar la URL de la imagen actual
+    (function() {
+      let currentImageUrl = ''; // Variable para almacenar la URL completa de la imagen actual
   
-    // Función para abrir el modal y establecer la imagen actual
-    function openModalGallery(imageElement) {
-      const galleryImage = document.getElementById("gallery-image");
-      galleryImage.src = imageElement.src; // Establece la imagen seleccionada en el modal
-      currentImageUrl = imageElement.src; // Actualiza la URL de la imagen actual
-      document.getElementById("gallery-view-modal").style.display = "block";
-    }
+      // Función para abrir el modal de la galería y establecer la imagen seleccionada
+      function openModalGallery(imageElement) {
+        const galleryImage = document.getElementById("gallery-image");
+        galleryImage.src = imageElement.src; // Muestra la imagen seleccionada en el modal
   
-    // Función para cerrar el modal
-    function closeModalGallery() {
-      document.getElementById("gallery-view-modal").style.display = "none";
-    }
+        // Construir la URL completa de la imagen de forma dinámica
+        const imagePath = new URL(imageElement.getAttribute('src'), window.location.origin);
+        currentImageUrl = imagePath.href; // URL completa de la imagen seleccionada
+        console.log("URL actual de la imagen:", currentImageUrl); // Verifica en la consola la URL de la imagen
   
-    // Función para mostrar/ocultar el menú de compartir
-    function toggleDropdown() {
-      const dropdown = document.getElementById("share-dropdown");
-      dropdown.style.display = dropdown.style.display === "none" || dropdown.style.display === "" ? "block" : "none";
-    }
-  
-    // Función para compartir en Facebook
-    function shareInFacebook() {
-      const url = encodeURIComponent(currentImageUrl || window.location.href);
-      const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
-      window.open(facebookUrl, '_blank');
-    }
-  
-    // Función para compartir en WhatsApp
-    function shareInWhatsapp() {
-      const url = encodeURIComponent(currentImageUrl || window.location.href);
-      const whatsappUrl = `https://wa.me/?text=${url}`;
-      window.open(whatsappUrl, '_blank');
-    }
-  
-    // Cierra el menú de compartir si se hace clic fuera de él
-    window.addEventListener("click", function (event) {
-      const dropdown = document.getElementById("share-dropdown");
-      const shareContainer = document.querySelector(".share_container");
-      if (!shareContainer.contains(event.target)) {
-        dropdown.style.display = "none";
+        document.getElementById("gallery-view-modal").style.display = "block";
       }
-    });
+  
+      // Función para cerrar el modal de la galería
+      function closeModalGallery() {
+        document.getElementById("gallery-view-modal").style.display = "none";
+      }
+  
+      // Función para mostrar/ocultar el menú de compartir
+      function toggleDropdown() {
+        const dropdown = document.getElementById("share-dropdown");
+        dropdown.style.display = dropdown.style.display === "none" || dropdown.style.display === "" ? "block" : "none";
+      }
+  
+      // Función para compartir en Facebook la imagen actual del modal
+      function shareInFacebook() {
+        if (currentImageUrl) {
+          const url = encodeURIComponent(currentImageUrl);
+          const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
+          window.open(facebookUrl, '_blank');
+        } else {
+          alert("No hay una imagen seleccionada para compartir.");
+        }
+      }
+  
+      // Función para compartir en WhatsApp la imagen actual del modal
+      function shareInWhatsapp() {
+        if (currentImageUrl) {
+          const url = encodeURIComponent(currentImageUrl);
+          const whatsappUrl = `https://wa.me/?text=${url}`;
+          window.open(whatsappUrl, '_blank');
+        } else {
+          alert("No hay una imagen seleccionada para compartir.");
+        }
+      }
+  
+      // Cierra el menú de compartir si se hace clic fuera de él
+      window.addEventListener("click", function(event) {
+        const dropdown = document.getElementById("share-dropdown");
+        const shareContainer = document.querySelector(".share_container");
+        if (dropdown.style.display === "block" && !shareContainer.contains(event.target)) {
+          dropdown.style.display = "none";
+        }
+      });
+  
+      // Expone las funciones necesarias en el ámbito global
+      window.openModalGallery = openModalGallery;
+      window.closeModalGallery = closeModalGallery;
+      window.toggleDropdown = toggleDropdown;
+      window.shareInFacebook = shareInFacebook;
+      window.shareInWhatsapp = shareInWhatsapp;
+  
+    })(); // IIFE para encapsular el código
   </script>
   
 
+ </script>
   <script src="js/gallery.js?v=1.0.0"></script>
   <script src="js/gallery-events.js?v=1.0.0"></script>
 </body>
