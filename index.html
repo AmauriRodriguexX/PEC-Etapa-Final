@@ -772,22 +772,21 @@
 
   <!--compartir pagina-->
   <script>
-    window.onload = function() {
-  function share(platform) {
-    const url = encodeURIComponent(window.location.href);
-    let shareUrl = '';
+    window.onload = function () {
+      function share(platform) {
+        const url = encodeURIComponent(window.location.href);
+        let shareUrl = '';
 
-    if (platform === 'facebook') {
-      shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
-    } else if (platform === 'whatsapp') {
-      shareUrl = `https://wa.me/?text=${url}`;
-    }
+        if (platform === 'facebook') {
+          shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
+        } else if (platform === 'whatsapp') {
+          shareUrl = `https://wa.me/?text=${url}`;
+        }
 
-    window.open(shareUrl, '_blank');
-  }
-  window.share = share; // Asegura que `share` esté en el contexto global
-};
-
+        window.open(shareUrl, '_blank');
+      }
+      window.share = share;
+    };
   </script>
 
 
