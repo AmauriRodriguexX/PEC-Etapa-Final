@@ -413,11 +413,11 @@
     </div>
     <p class="info">Comparte esta página</p>
     <div class="socials">
-      <button onclick="share('Facebook'); onHomeShare('facebook')">
+      <button onclick="share('facebook')">
         <img src="./assets/images/fb-icon-gray.png" alt="Facebook" width="11" height="18" />
       </button>
-      <button onclick="share('Whatsapp'); onHomeShare('whatsapp')">
-        <img src="./assets/images/whatsapp-icon-gray.png" alt="whatsapp" width="19" height="18" />
+      <button onclick="share('whatsapp')">
+        <img src="./assets/images/whatsapp-icon-gray.png" alt="WhatsApp" width="19" height="18" />
       </button>
     </div>
     <div class="hr-container">
@@ -772,39 +772,23 @@
 
   <!--compartir pagina-->
   <script>
-    function share(platform) {
-  console.log(`Intentando compartir en: ${platform}`);
-  let urlToShare = window.location.href; // URL actual
-  let shareUrl = '';
+    window.onload = function() {
+  function share(platform) {
+    const url = encodeURIComponent(window.location.href);
+    let shareUrl = '';
 
-  switch (platform.toLowerCase()) {
-    case 'facebook':
-      shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(urlToShare)}`;
-      break;
-    case 'whatsapp':
-      shareUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(urlToShare)}`;
-      break;
-    default:
-      console.warn(`No se configuró la plataforma: ${platform}`);
-      return;
+    if (platform === 'facebook') {
+      shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
+    } else if (platform === 'whatsapp') {
+      shareUrl = `https://wa.me/?text=${url}`;
+    }
+
+    window.open(shareUrl, '_blank');
   }
-
-  window.open(shareUrl, '_blank');
-}
-
-function onHomeShare(platform) {
-  console.log(`Registrando en dataLayer para: ${platform}`);
-  window.dataLayer = window.dataLayer || [];
-  window.dataLayer.push({
-    event: 'share_event',
-    platform: platform,
-    page: window.location.pathname
-  });
-  console.log(`Evento de compartir registrado en dataLayer para ${platform}`);
-}
+  window.share = share; // Asegura que `share` esté en el contexto global
+};
 
   </script>
-
 
 
   <script src="js/script.js?v=1.0.0"></script>
