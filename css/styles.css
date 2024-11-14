@@ -992,8 +992,9 @@ footer address {
   position: absolute;
   background-color: white;
   z-index: 1001;
-  top: calc(100%); /* Position it just below the "Compartir" button */
-  left: 0;
+  top: calc(119%);
+  left: 0%;
+  transform: translateX(-50%);
   overflow: hidden;
 }
 
@@ -2218,44 +2219,6 @@ footer address {
     margin-right: 8px;
 }
 
-/* Responsivo */
-@media (max-width: 768px) {
-    .share_container {
-        font-size: 14px;
-        padding: 6px 10px;
-    }
-
-    .share_dropdown {
-        min-width: 140px;
-        top: 130%; /* Ajusta la posición en móviles */
-    }
-
-    .share_dropdown a {
-        font-size: 13px;
-        padding: 8px 10px;
-    }
-}
-
-@media (max-width: 480px) {
-    .share_container {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .share_container img {
-        margin: 0 0 4px 0;
-    }
-
-    .share_dropdown {
-        min-width: 120px;
-        top: 140%;
-    }
-
-    .share_dropdown a {
-        font-size: 12px;
-        padding: 6px 8px;
-    }
-}
 
 .space-social  {
   margin-bottom: 8px;
