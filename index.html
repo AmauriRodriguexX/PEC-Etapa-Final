@@ -740,6 +740,7 @@
 
   </script>
 
+  <!--compartir media-->
   <script>
     function toggleDropdown() {
       const dropdown = document.getElementById("share-dropdown");
@@ -768,6 +769,44 @@
     });
 
   </script>
+
+  <!--compartir pagina-->
+  <script>
+    function share(platform) {
+  console.log(`Intentando compartir en: ${platform}`);
+  let urlToShare = window.location.href; // URL actual
+  let shareUrl = '';
+
+  switch (platform.toLowerCase()) {
+    case 'facebook':
+      shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(urlToShare)}`;
+      break;
+    case 'whatsapp':
+      shareUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(urlToShare)}`;
+      break;
+    default:
+      console.warn(`No se configuró la plataforma: ${platform}`);
+      return;
+  }
+
+  window.open(shareUrl, '_blank');
+}
+
+function onHomeShare(platform) {
+  console.log(`Registrando en dataLayer para: ${platform}`);
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({
+    event: 'share_event',
+    platform: platform,
+    page: window.location.pathname
+  });
+  console.log(`Evento de compartir registrado en dataLayer para ${platform}`);
+}
+
+  </script>
+
+
+
   <script src="js/script.js?v=1.0.0"></script>
   <script src="js/home-events.js?v=1.0.0"></script>
 </body>
