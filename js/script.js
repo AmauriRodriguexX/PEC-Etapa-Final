@@ -490,7 +490,9 @@ const updateGalleryArrow = (index) => {
 // MARK: HELPERS
 
 function getFullImageUrl(localPath) {
-  return `${window.location.origin}/${localPath.replace("./", "")}`;
+  if (!localPath) return null;
+  const baseUrl = window.location.origin; // Usa el origen del servidor actual
+  return new URL(localPath.replace("./", ""), baseUrl).href;
 }
 
 /**
@@ -631,9 +633,10 @@ const $SHARE_DROPDOWN = document.getElementById("share-dropdown");
  * @throws {Error} If the currentImageUrl is not valid or if the download fails.
  */
 function download() {
-  const currentImageUrl = getCurrentImageUrl(currentIndex);
+  const currentImageUrl = getFullImageUrl(GALLERY_IMAGES[currentIndex]);
   if (!currentImageUrl) {
-    throw new Error("URL de imagen no válida.");
+    alert("No se encontró la URL de la imagen.");
+    return;
   }
 
   try {
@@ -641,9 +644,11 @@ function download() {
     onGalleryDownload(currentImageUrl);
     link.click();
   } catch (error) {
-    console.error("No se ha podido descargar la imagen:", error);
+    console.error("Error al descargar la imagen:", error);
+    alert("No se pudo descargar la imagen. Inténtalo más tarde.");
   }
 }
+
 
 /**
  * Creates a "download link" for the specified image URL.
@@ -663,8 +668,9 @@ function createDownloadLink(imageUrl) {
  * @returns {string} The extracted filename.
  */
 function extractFileName(url) {
-  return url.split("/").pop();
+  return url.substring(url.lastIndexOf("/") + 1);
 }
+
 
 /**
  * Retrieves the current image URL based on the provided index.
