@@ -552,42 +552,64 @@
 
   <!-- Script para registrar eventos -->
   <script>
-    // Función para registrar ganadores
-    function registrarEventoGanadoresPEC2024(participante, categoria, imagenUrl) {
+    // Evento para los ganadores de las categorías normales
+    function registrarEventoGanadoresPEC2024(participanteId, categoria, imagenUrl) {
       dataLayer.push({
-        event: "ganadores_pec2024",
+        event: "ganadores_pec2024", // Evento según plan de marcación
+        CDCategory: categoria, // Categoría específica como 'Centro', 'Pacífico', etc.
+        CDAction: "conoce_mi_historia",
+        CDLabel: participanteId, // Evita datos personales, usando ID de participante
+        detail: imagenUrl, // URL completa de la imagen
+        CDFunnel: "PE Etapa Final 2024"
+      });
+    }
+  
+    // Evento para ganadores en categorías especiales
+    function registrarEventoGanadoresPECCategoriasEspeciales(participanteId, categoria, imagenUrl) {
+      dataLayer.push({
+        event: "ganadores_pec2024_categorias_especiales", // Evento corregido
         CDCategory: categoria,
         CDAction: "conoce_mi_historia",
-        CDLabel: participante,
-        CDValue: "https://www.youtube.com/embed/ne-xLWHbxVQ",
+        CDLabel: participanteId,
         detail: imagenUrl,
         CDFunnel: "PE Etapa Final 2024"
       });
     }
-
-    // Función para ver una foto en la galería
-    function registrarEventoVerFoto() {
+  
+    // Evitar disparo duplicado del evento “Conoce su historia”
+    let conoceHistoriaDisparado = false;
+  
+    function onKnowTheStory(participanteId) {
+      if (!conoceHistoriaDisparado) {
+        conoceHistoriaDisparado = true;
+        // Llama al evento para enviar al dataLayer
+        registrarEventoGanadoresPEC2024(participanteId, "Centro", "/ruta/a/la/imagen.png");
+      }
+    }
+  
+    // Evento para ver una foto en la galería, sin duplicar con “Conoce su historia”
+    function registrarEventoVerFoto(imagenUrl) {
       dataLayer.push({
         event: 'galeria_PEC',
         CDCategory: 'Galería etapa final PEC',
         CDAction: 'ver_foto',
         CDFunnel: 'PE Etapa Final 2024',
-        CDValue: '/assets/images/imagen_final_ganadores.png'
+        CDValue: imagenUrl // URL completa de la imagen
       });
     }
-
-    // Función para descargar una foto en la galería
-    function registrarEventoDescargarFoto() {
+  
+    // Evento para descargar una foto en la galería
+    function registrarEventoDescargarFoto(imagenUrl) {
       dataLayer.push({
         event: 'galeria_PEC',
         CDCategory: 'Galería etapa final PEC',
         CDAction: 'descargar_foto',
         CDFunnel: 'PE Etapa Final 2024',
-        CDValue: '/assets/images/imagen_final_ganadores.png'
+        CDValue: imagenUrl // URL completa de la imagen
       });
     }
-
-    // Función para compartir en redes sociales
+  
+    // Evento para compartir en redes sociales con validación en Facebook y WhatsApp
     function registrarEventoClickCompartirPagina(redSocial) {
       dataLayer.push({
         event: 'click_element',
@@ -595,8 +617,29 @@
         CDLabel: redSocial,
         CDFunnel: 'PE Etapa Final 2024'
       });
+  
+      let url = encodeURIComponent(window.location.href);
+      if (redSocial === 'facebook') {
+        window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, '_blank');
+      } else if (redSocial === 'whatsapp') {
+        window.open(`https://wa.me/?text=${url}`, '_blank');
+      }
+    }
+  
+    // Funciones para compartir imagen en galería en Facebook y WhatsApp
+    function shareInFacebook(imagenUrl) {
+      registrarEventoClickCompartirPagina('facebook');
+      const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(imagenUrl)}`;
+      window.open(facebookUrl, '_blank');
+    }
+  
+    function shareInWhatsapp(imagenUrl) {
+      registrarEventoClickCompartirPagina('whatsapp');
+      const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(imagenUrl)}`;
+      window.open(whatsappUrl, '_blank');
     }
   </script>
+  
 
   <!-- dots slider-->
   <script>
