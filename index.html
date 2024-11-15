@@ -461,8 +461,7 @@
         <div class="intersection"></div>
         <div class="share_wrapper">
           <!-- Botón para abrir el menú de compartir -->
-          <div class="share_container" 
-               onclick="handleShareClick('./assets/images/imagen_final_ganadores.png')">
+          <div class="share_container" onclick="handleShareClick('./assets/images/imagen_final_ganadores.png')">
             <img src="./assets/images/share-icon.png" alt="Icono compartir" />
             <span class="font-inter">Compartir</span>
           </div>
@@ -476,7 +475,7 @@
             </a>
           </div>
         </div>
-        
+
       </div>
     </div>
   </div>
@@ -616,38 +615,38 @@
     }
 
     function handleShareClick(imagenURL) {
-  // Registrar el evento en el dataLayer
-  dataLayer.push({
-    event: "galeria_PEC",
-    CDCategory: "Galería etapa final PEC",
-    CDAction: "compartir_foto",
-    CDFunnel: "PE Etapa Final 2024",
-    CDValue: imagenURL,
-  });
+      // Registrar el evento en el dataLayer
+      dataLayer.push({
+        event: "galeria_PEC",
+        CDCategory: "Galería etapa final PEC",
+        CDAction: "compartir_foto",
+        CDFunnel: "PE Etapa Final 2024",
+        CDValue: imagenURL,
+      });
 
-  console.log("Evento de compartir registrado en el dataLayer con URL:", imagenURL);
+      console.log("Evento de compartir registrado en el dataLayer con URL:", imagenURL);
 
-  // Mostrar el dropdown
-  toggleDropdown();
-}
+      // Mostrar el dropdown
+      toggleDropdown();
+    }
 
-// Función para alternar la visibilidad del dropdown
-function toggleDropdown() {
-  const dropdown = document.getElementById("share-dropdown");
-  dropdown.style.display = dropdown.style.display === "none" || dropdown.style.display === "" ? "block" : "none";
-}
+    // Función para alternar la visibilidad del dropdown
+    function toggleDropdown() {
+      const dropdown = document.getElementById("share-dropdown");
+      dropdown.style.display = dropdown.style.display === "none" || dropdown.style.display === "" ? "block" : "none";
+    }
 
-// Función para compartir en Facebook
-function shareInFacebook(imagenURL) {
-  const facebookURL = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(imagenURL)}`;
-  window.open(facebookURL, "_blank");
-}
+    // Función para compartir en Facebook
+    function shareInFacebook(imagenURL) {
+      const facebookURL = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(imagenURL)}`;
+      window.open(facebookURL, "_blank");
+    }
 
-// Función para compartir en WhatsApp
-function shareInWhatsapp(imagenURL) {
-  const whatsappURL = `https://api.whatsapp.com/send?text=${encodeURIComponent(imagenURL)}`;
-  window.open(whatsappURL, "_blank");
-}
+    // Función para compartir en WhatsApp
+    function shareInWhatsapp(imagenURL) {
+      const whatsappURL = `https://api.whatsapp.com/send?text=${encodeURIComponent(imagenURL)}`;
+      window.open(whatsappURL, "_blank");
+    }
 
   </script>
 
