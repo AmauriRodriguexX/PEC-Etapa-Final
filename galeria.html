@@ -232,120 +232,154 @@
 
   <!-- Script para registrar eventos -->
   <script>
+    // Función auxiliar para convertir URLs relativas en absolutas
+    function getFullUrl(url) {
+      return url.startsWith('http') || url.startsWith('//') 
+        ? url 
+        : new URL(url, window.location.origin).href;
+    }
+  
     // Evento para ganadores con ID anónimo
     function registrarEventoGanadoresPEC2024(participantId, category, imageUrl, videoUrl) {
+      const fullImageUrl = getFullUrl(imageUrl);
+      const fullVideoUrl = getFullUrl(videoUrl);
+  
       dataLayer.push({
         event: "ganadores_pec2024",
         CDCategory: category, // Categoría de la región
         CDAction: "conoce_mi_historia",
         CDLabel: `participante_${participantId}`, // Etiqueta anónima
-        CDValue: videoUrl, // URL completa del video
-        detail: imageUrl, // URL completa de la imagen del participante
+        CDValue: fullVideoUrl, // URL completa del video
+        detail: fullImageUrl, // URL completa de la imagen del participante
         CDFunnel: "PE Etapa Final 2024"
       });
     }
-
+  
     // Evento para categorías especiales con ID anónimo
     function registrarEventoGanadoresPECCategoriasEspeciales(participantId, category, imageUrl, videoUrl) {
+      const fullImageUrl = getFullUrl(imageUrl);
+      const fullVideoUrl = getFullUrl(videoUrl);
+  
       dataLayer.push({
         event: "ganadores_pec2024_categorias_especiales",
         CDCategory: category,
         CDAction: "conoce_mi_historia",
         CDLabel: `participante_${participantId}`, // Etiqueta anónima
-        CDValue: videoUrl, // URL completa del video
-        detail: imageUrl, // URL completa de la imagen del participante
+        CDValue: fullVideoUrl, // URL completa del video
+        detail: fullImageUrl, // URL completa de la imagen del participante
         CDFunnel: "PE Etapa Final 2024"
       });
     }
-
+  
     // Evento para ver una foto en galería
     function registrarEventoVerFoto(imageUrl) {
+      const fullImageUrl = getFullUrl(imageUrl);
+  
       dataLayer.push({
         event: 'galeria_PEC',
         CDCategory: 'Galería etapa final PEC',
         CDAction: 'ver_foto',
         CDFunnel: 'PE Etapa Final 2024',
-        CDValue: imageUrl // URL completa de la imagen
+        CDValue: fullImageUrl // URL completa de la imagen
       });
     }
-
+  
     // Evento para descargar una foto en galería
     function registrarEventoDescargarFoto(imageUrl) {
+      const fullImageUrl = getFullUrl(imageUrl);
+  
       dataLayer.push({
         event: 'galeria_PEC',
         CDCategory: 'Galería etapa final PEC',
         CDAction: 'descargar_foto',
         CDFunnel: 'PE Etapa Final 2024',
-        CDValue: imageUrl // URL completa de la imagen
+        CDValue: fullImageUrl // URL completa de la imagen
       });
     }
-
+  
     // Evento para compartir contenido
     function registrarEventoCompartirFoto(imageUrl) {
+      const fullImageUrl = getFullUrl(imageUrl);
+  
       dataLayer.push({
         event: 'galeria_PEC',
         CDCategory: 'Galería etapa final PEC',
         CDAction: 'compartir_foto',
         CDFunnel: 'PE Etapa Final 2024',
-        CDValue: imageUrl // URL completa de la imagen compartida
+        CDValue: fullImageUrl // URL completa de la imagen compartida
       });
       console.log("Evento compartir registrado en el dataLayer.");
     }
   </script>
+  
 
   <!-- Script para registrar eventos -->
   <script>
     // Inicialización de dataLayer
     window.dataLayer = window.dataLayer || [];
-
+  
+    // Función auxiliar para convertir URLs relativas en absolutas
+    function getFullUrl(url) {
+      return url.startsWith('http') || url.startsWith('//')
+        ? url
+        : new URL(url, window.location.origin).href;
+    }
+  
     // Función para registrar evento de ganadores en categorías especiales
     function registrarEventoGanadoresCategoriasEspeciales(participante) {
+      const fullVideoUrl = getFullUrl("https://www.youtube.com/embed/ne-xLWHbxVQ"); // Ya es una URL absoluta
+      const fullImageUrl = getFullUrl("./assets/images/participantes/grupo-centronorte-participante-1.png");
+  
       dataLayer.push({
         event: "ganadores_categorías_especiales",
         CDCategory: 'servicio',
         CDAction: "conoce_mi_historia",
         CDLabel: `participante_${participante}`,
-        CDValue: "https://www.youtube.com/embed/ne-xLWHbxVQ",
-        detail: "./assets/images/participantes/grupo-centronorte-participante-1.png",
+        CDValue: fullVideoUrl,
+        detail: fullImageUrl,
         CDFunnel: "PE Etapa Final 2024"
       });
     }
-
+  
+    // Función para registrar evento al ver una foto en la galería
     function registrarEventoVerFoto(imageUrl) {
+      const fullImageUrl = getFullUrl(imageUrl);
+  
       dataLayer.push({
-        'event': 'galeria_PEC',
-        'CDCategory': 'Galería etapa final PEC',
-        'CDAction': 'ver_foto',
-        'CDFunnel': 'PE Etapa Final 2024',
-        'CDValue': imageUrl // La URL completa de la imagen vista
+        event: 'galeria_PEC',
+        CDCategory: 'Galería etapa final PEC',
+        CDAction: 'ver_foto',
+        CDFunnel: 'PE Etapa Final 2024',
+        CDValue: fullImageUrl // La URL completa de la imagen vista
       });
-
+  
       console.log("Evento ver foto registrado en el dataLayer:", {
         event: 'galeria_PEC',
         CDCategory: 'Galería etapa final PEC',
         CDAction: 'ver_foto',
         CDFunnel: 'PE Etapa Final 2024',
-        CDValue: imageUrl
+        CDValue: fullImageUrl
       });
     }
-
-
-
+  
     // Función para descargar imagen en galería PEC
     function registrarEventoDescargarFoto() {
+      const fullImageUrl = getFullUrl('/assets/images/imagen_final_ganadores.png');
+  
       dataLayer.push({
         event: 'galeria_PEC',
         CDCategory: 'Galería etapa final PEC',
         CDAction: 'descargar_foto',
         CDFunnel: 'PE Etapa Final 2024',
-        CDValue: '/assets/images/imagen_final_ganadores.png'
+        CDValue: fullImageUrl
       });
     }
-
+  
+    // Función para compartir foto
     function registrarEventoCompartirFoto(imageUrl) {
-      // Verifica si la URL es válida
-      const currentUrl = imageUrl || window.location.href;
-
+      // Verifica si la URL es válida y la convierte en absoluta
+      const currentUrl = getFullUrl(imageUrl || window.location.href);
+  
       // Registrar el evento en el dataLayer
       dataLayer.push({
         event: 'galeria_PEC',
@@ -354,15 +388,16 @@
         CDFunnel: 'PE Etapa Final 2024',
         CDValue: currentUrl // URL completa de la imagen compartida
       });
-
+  
       console.log("Evento compartir registrado en el dataLayer con URL:", currentUrl);
-
+  
       // Alternar visibilidad del dropdown
       const dropdown = document.getElementById("share-dropdown");
-      dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+      if (dropdown) {
+        dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+      }
     }
-
-
+  
     // Función para click en compartir página
     function registrarEventoClickCompartirPagina(redSocial) {
       dataLayer.push({
@@ -372,45 +407,52 @@
         CDFunnel: 'PE Etapa Final 2024'
       });
     }
-
+  
     // Función para los eventos de videos en la categoría de participación familiar
     function registrarEventoVideoParticipacionFamiliar(accion, participante) {
+      const fullVideoUrl = getFullUrl(`./assets/images/participante_${participante}.mp4`);
+  
       dataLayer.push({
         event: 'pec_2024_videos',
         CDCategory: 'Participacion familiar',
         CDAction: accion, // e.g., '01. Inicio', '02. Progreso 10%', '03. Completado'
         CDLabel: `participante_${participante}`,
-        CDValue: `./assets/images/participante_${participante}.mp4`,
+        CDValue: fullVideoUrl,
         CDFunnel: 'PE Etapa Final 2024'
       });
     }
-
+  
     // Función para registrar evento de ganadores PEC 2024
     function registrarEventoGanadoresPEC2024(participante) {
+      const fullVideoUrl = getFullUrl("https://www.youtube.com/embed/ne-xLWHbxVQ"); // Ya es una URL absoluta
+      const fullImageUrl = getFullUrl(`./assets/images/participantes/grupo-centronorte-participante-${participante}.png`);
+  
       dataLayer.push({
         event: "ganadores_pec2024",
         CDCategory: 'centro',
         CDAction: "conoce_mi_historia",
         CDLabel: `participante_${participante}`,
-        CDValue: "https://www.youtube.com/embed/ne-xLWHbxVQ",
-        detail: `./assets/images/participantes/grupo-centronorte-participante-${participante}.png`,
+        CDValue: fullVideoUrl,
+        detail: fullImageUrl,
         CDFunnel: "PE Etapa Final 2024"
       });
     }
-
+  
     // Función para los eventos de videos en categorías especiales
     function registrarEventoVideoCategoriasEspeciales(accion, participante) {
+      const fullVideoUrl = getFullUrl(`./assets/images/participante_${participante}.mp4`);
+  
       dataLayer.push({
         event: 'pec_2024_videos_categorias_especiales',
         CDCategory: 'Participacion familiar',
         CDAction: accion, // e.g., '01. Inicio', '02. Progreso 10%', '03. Completado'
         CDLabel: `participante_${participante}`,
-        CDValue: `./assets/images/participante_${participante}.mp4`,
+        CDValue: fullVideoUrl,
         CDFunnel: 'PE Etapa Final 2024'
       });
     }
   </script>
-
+  
   <!--compartir media-->
   <script>
     (function () {

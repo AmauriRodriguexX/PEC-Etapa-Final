@@ -281,64 +281,72 @@ document.addEventListener('DOMContentLoaded', async function () {
   let currentIndex = 0;
   const competitorGroup = document.querySelector('.competitor-group');
   currentGroupData = [];
-  updateGroupContent(buttons[0].textContent,0, groups[buttons[0].getAttribute('data-group')], false);
-  buttons.forEach((button,index) => {
-    let disabled = false;
+  updateGroupContent(buttons[0].textContent, 0, groups[buttons[0].getAttribute('data-group')], false);
+
+  buttons.forEach((button, index) => {
     const group = button.getAttribute('data-group');
     button.addEventListener('click', function () {
-      const groupKey = Object.keys(groups)[index];
-      buttons.forEach(btn => btn.classList.remove('selected'));
+      buttons.forEach((btn) => btn.classList.remove('selected'));
       button.classList.add('selected');
       currentGroupData = groups[group];
-      updateGroupContent(button.textContent,index+1, groups[group], disabled);
+      updateGroupContent(button.textContent, index + 1, groups[group], false);
     });
   });
+
   updateCarouselArrow(0);
 
   function updateSelectedButton() {
-    buttons.forEach(btn => btn.classList.remove('selected'));
+    buttons.forEach((btn) => btn.classList.remove('selected'));
     buttons[currentIndex].classList.add('selected');
     updateCarouselArrow(currentIndex);
   }
 
   prevButton.addEventListener('click', function () {
-    currentIndex = (currentIndex > 0) ? currentIndex - 1 : buttons.length - 1;
+    currentIndex = currentIndex > 0 ? currentIndex - 1 : buttons.length - 1;
     updateSelectedButton();
-    updateGroupContent(buttons[currentIndex].textContent, currentIndex + 1, groups[buttons[currentIndex].getAttribute('data-group')], false);
+    updateGroupContent(
+      buttons[currentIndex].textContent,
+      currentIndex + 1,
+      groups[buttons[currentIndex].getAttribute('data-group')],
+      false,
+      false // No registrar eventos para estos botones
+    );
   });
 
   nextButton.addEventListener('click', function () {
-    currentIndex = (currentIndex < buttons.length - 1) ? currentIndex + 1 : 0;
+    currentIndex = currentIndex < buttons.length - 1 ? currentIndex + 1 : 0;
     updateSelectedButton();
-    updateGroupContent(buttons[currentIndex].textContent, currentIndex + 1, groups[buttons[currentIndex].getAttribute('data-group')], false);
+    updateGroupContent(
+      buttons[currentIndex].textContent,
+      currentIndex + 1,
+      groups[buttons[currentIndex].getAttribute('data-group')],
+      false,
+      false // No registrar eventos para estos botones
+    );
   });
 
-  function updateGroupContent(groupName, groupNumber, groupData, disabled) {
+  function updateGroupContent(groupName, groupNumber, groupData, disabled, registerEvents = true) {
     competitorGroup.innerHTML = '';
-  
+
     groupData.forEach((competitor, index) => {
-      // Genera la URL completa del video en formato embed de YouTube
       const videoUrl = `https://www.youtube.com/embed/${competitor.videoId}`;
-  
-      // Estructura HTML para cada participante, con evento dataLayer anónimo
+      const imageUrl = competitor.image;
+
       competitorGroup.innerHTML += `
         <div class="competitor">
-          <div class="competitor-img" onclick="openModal('${competitor.videoId}', '${competitor.name}', '${competitor.description}', '${index}', '${groupName}');
-                       registrarEventoGanadoresPECCategoriasEspeciales(${competitor.number}, '${groupName}', '${competitor.image}', '${videoUrl}');">
-            <img src="${competitor.image}" alt="${competitor.name}" width="150" height="60" />
+          <div class="competitor-img" onclick="handleCompetitorClick('${competitor.videoId}', '${competitor.name}', '${competitor.description}', '${index}', '${groupName}', '${imageUrl}', '${videoUrl}');">
+            <img src="${imageUrl}" alt="${competitor.name}" width="150" height="60" />
           </div>
         </div>
         <div class="actions">
           <div class="history">
-            <p class="competitor-name" onclick="openModal('${competitor.videoId}', '${competitor.name}', '${competitor.description}', '${index}', '${groupName}');
-                       registrarEventoGanadoresPECCategoriasEspeciales(${competitor.number}, '${groupName}', '${competitor.image}', '${videoUrl}');">
+            <p class="competitor-name" onclick="handleCompetitorClick('${competitor.videoId}', '${competitor.name}', '${competitor.description}', '${index}', '${groupName}', '${imageUrl}', '${videoUrl}');">
               ${competitor.name}
             </p>
             <p class="competitor-group-name">${groupName}</p>
             <p id="competitor-description" class="description">${competitor.description}</p>
             <div class="button-container" 
-              onclick="openModal('${competitor.videoId}', '${competitor.name}', '${competitor.description}', '${index}', '${groupName}');
-                       registrarEventoGanadoresPECCategoriasEspeciales(${competitor.number}, '${groupName}', '${competitor.image}', '${videoUrl}');">
+              onclick="handleCompetitorClick('${competitor.videoId}', '${competitor.name}', '${competitor.description}', '${index}', '${groupName}', '${imageUrl}', '${videoUrl}');">
               <button class="watch-video">
                 <p>Conoce su historia</p>
                 <div class="play-button"><img src="./assets/images/play-video.png" alt="bubble" /></div>
@@ -347,28 +355,126 @@ document.addEventListener('DOMContentLoaded', async function () {
           </div> 
         </div>
       `;
-  
-      // Ajuste de altura para las descripciones
+
+      if (registerEvents) {
+        registrarEventoVerFoto(imageUrl);
+      }
+
       const descriptions = document.querySelectorAll('#competitor-description');
       let maxHeight = 0;
-      
-      descriptions.forEach(description => {
+
+      descriptions.forEach((description) => {
         if (description.offsetHeight > maxHeight) {
           maxHeight = description.offsetHeight;
         }
       });
-      
-      descriptions.forEach(description => {
+
+      descriptions.forEach((description) => {
         description.style.height = maxHeight + 'px';
       });
     });
   }
-  
-  
 });
 
+
+// Maneja el clic de cada competidor y registra el evento en dataLayer
+function handleCompetitorClick(videoId, name, description, index, groupName, imageUrl, videoUrl) {
+  openModal(videoId, name, description, index, groupName);
+
+  registrarEventoGanadoresPECCategoriasEspeciales(
+    index + 1, // Cambia si necesitas usar otro identificador
+    groupName,
+    imageUrl,
+    videoUrl
+  );
+}
+
+
+// Seleccionamos los botones del carrusel
 const $carouselLeftArrow = document.getElementById('prev-button');
 const $carouselRightArrow = document.getElementById('next-button');
+
+// Agregamos eventos a los botones del carrusel
+if ($carouselLeftArrow) {
+  $carouselLeftArrow.addEventListener('click', function (event) {
+    event.preventDefault();
+    event.stopPropagation(); // Evita la propagación del evento
+
+    // Registrar el evento en dataLayer
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      event: "gtm.click",
+      'gtm.elementClasses': $carouselLeftArrow.className,
+      'gtm.elementId': 'prev-button',
+      'gtm.elementTarget': '',
+      'gtm.triggers': '...', // Reemplaza con los IDs de los triggers si es necesario
+      'gtm.elementUrl': ''
+    });
+    console.log('DataLayer event pushed for prev-button');
+
+    // Lógica existente del botón izquierdo
+    currentIndex = currentIndex > 0 ? currentIndex - 1 : buttons.length - 1;
+    updateSelectedButton();
+    updateGroupContent(
+      buttons[currentIndex].textContent,
+      currentIndex + 1,
+      groups[buttons[currentIndex].getAttribute('data-group')],
+      false,
+      false // No registrar eventos adicionales aquí
+    );
+  });
+}
+
+if ($carouselRightArrow) {
+  $carouselRightArrow.addEventListener('click', function (event) {
+    event.preventDefault();
+    event.stopPropagation(); // Evita la propagación del evento
+
+    // Registrar el evento en dataLayer
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      event: "gtm.click",
+      'gtm.elementClasses': $carouselRightArrow.className,
+      'gtm.elementId': 'next-button',
+      'gtm.elementTarget': '',
+      'gtm.triggers': '...', // Reemplaza con los IDs de los triggers si es necesario
+      'gtm.elementUrl': ''
+    });
+    console.log('DataLayer event pushed for next-button');
+
+    // Lógica existente del botón derecho
+    currentIndex = currentIndex < buttons.length - 1 ? currentIndex + 1 : 0;
+    updateSelectedButton();
+    updateGroupContent(
+      buttons[currentIndex].textContent,
+      currentIndex + 1,
+      groups[buttons[currentIndex].getAttribute('data-group')],
+      false,
+      false // No registrar eventos adicionales aquí
+    );
+  });
+}
+
+
+// Agrega eventos sin registrar en dataLayer
+if ($carouselLeftArrow) {
+  $carouselLeftArrow.addEventListener('click', function (event) {
+    event.preventDefault(); // Evita el comportamiento predeterminado si aplica
+    // Lógica del botón izquierdo aquí
+    console.log('Botón de flecha izquierda presionado');
+    // Desplazamiento o funcionalidad del carrusel (si aplica)
+  });
+}
+
+if ($carouselRightArrow) {
+  $carouselRightArrow.addEventListener('click', function (event) {
+    event.preventDefault(); // Evita el comportamiento predeterminado si aplica
+    // Lógica del botón derecho aquí
+    console.log('Botón de flecha derecha presionado');
+    // Desplazamiento o funcionalidad del carrusel (si aplica)
+  });
+}
+
 
 const updateCarouselArrow = (index) => {
   if(index == 0) {
