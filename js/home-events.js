@@ -17,7 +17,7 @@ function onGallery(watchedImageUrl) {
   window.dataLayer.push({
     event: "galeria_PEC",
     CDCategory: "Galería etapa final PEC",
-    CDAction: "ver_foto",
+    CDAction: "ver_fotos",
     CDFunnel: "PE Etapa Final 2024",
     CDValue: watchedImageUrl,
   });
@@ -118,3 +118,41 @@ function shareInWhatsapp() {
   onDropdownShare("whatsapp");
   window.open(`https://wa.me/?text=${encodeURIComponent(window.location.href)}`, "_blank");
 }
+
+
+function onChooseGroup(groupName, button) {
+    // Verifica si el botón tiene el atributo `data-no-datalayer`
+    if (button.getAttribute('data-no-datalayer') === "true") {
+        console.log(`Botón de ${groupName} no registra en el dataLayer.`);
+        return; // Sal del método sin registrar nada
+    }
+
+    // Código para registrar en el dataLayer
+    dataLayer.push({
+        event: "galeria_PEC",
+        CDCategory: "Galería etapa final PEC",
+        CDAction: "ver_foto",
+        CDFunnel: "PE Etapa Final 2024",
+        CDValue: groupName
+    });
+    console.log(`Registrado en el dataLayer: ${groupName}`);
+}
+
+
+document.querySelectorAll('.carousel .carousel-button').forEach(button => {
+  button.addEventListener('click', function(event) {
+      if (button.classList.contains('no-datalayer')) {
+          console.log(`Bloqueado del dataLayer para: ${button.dataset.group}`);
+          // Bloqueamos cualquier interacción con el dataLayer eliminando la lógica específica
+          window.dataLayer = window.dataLayer || [];
+          const index = window.dataLayer.findIndex(event => event.CDValue === button.dataset.group);
+          if (index !== -1) { 
+            return ;
+            console.log("Evitar")//detención lógica para Data
+      }
+      } else {
+          console.log(`Se evitan problemas redondos`);
+       }    
+  });
+
+})

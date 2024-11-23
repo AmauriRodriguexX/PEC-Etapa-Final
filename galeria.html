@@ -230,6 +230,7 @@
     </address>
   </footer>
 
+
   <!-- Script para registrar eventos -->
   <script>
     // Función auxiliar para convertir URLs relativas en absolutas
@@ -271,18 +272,47 @@
       });
     }
   
-    // Evento para ver una foto en galería
-    function registrarEventoVerFoto(imageUrl) {
-      const fullImageUrl = getFullUrl(imageUrl);
-  
-      dataLayer.push({
-        event: 'galeria_PEC',
-        CDCategory: 'Galería etapa final PEC',
-        CDAction: 'ver_foto',
-        CDFunnel: 'PE Etapa Final 2024',
-        CDValue: fullImageUrl // URL completa de la imagen
-      });
-    }
+   // Encapsulamos en un IIFE para evitar conflictos globales
+(function() {
+  // Verificamos si el objeto de nuestra aplicación ya existe
+  window.miAplicacion = window.miAplicacion || {};
+
+  // Función auxiliar para convertir URLs relativas en absolutas
+  window.miAplicacion.getFullUrl = function(url) {
+    return url.startsWith('http') || url.startsWith('//')
+      ? url
+      : new URL(url, window.location.origin).href;
+  };
+
+  // Función para registrar el evento de ver foto
+  window.miAplicacion.registrarEventoVerFoto = function(imageUrl) {
+    const fullImageUrl = miAplicacion.getFullUrl(imageUrl);
+
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      event: 'galeria_PEC',
+      CDCategory: 'Galería etapa final PEC',
+      CDAction: 'ver_foto',
+      CDFunnel: 'PE Etapa Final 2024',
+      CDValue: fullImageUrl // La URL completa de la imagen vista
+    });
+  };
+
+  // Tu función openModalGallery ajustada
+  window.miAplicacion.openModalGallery = function(imageElement) {
+    const imageUrl = imageElement.getAttribute('src');
+    const fullImageUrl = miAplicacion.getFullUrl(imageUrl);
+
+    miAplicacion.registrarEventoVerFoto(fullImageUrl);
+
+    // Código para mostrar el modal...
+  };
+
+  // Exponemos las funciones necesarias
+  window.openModalGallery = miAplicacion.openModalGallery;
+
+})();
+
   
     // Evento para descargar una foto en galería
     function registrarEventoDescargarFoto(imageUrl) {

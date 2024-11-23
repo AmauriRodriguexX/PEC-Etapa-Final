@@ -65,3 +65,25 @@ function shareInWhatsapp() {
   onDropdownShare("whatsapp");
   window.open(`https://wa.me/?text=${encodeURIComponent(window.location.href)}`, "_blank");
 }
+
+
+var miAplicacion = miAplicacion || {};
+
+miAplicacion.getFullUrl = function(url) {
+  return url.startsWith('http') || url.startsWith('//')
+    ? url
+    : new URL(url, window.location.origin).href;
+};
+
+miAplicacion.registrarEventoVerFoto = function(imageUrl) {
+  const fullImageUrl = miAplicacion.getFullUrl(imageUrl);
+
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({
+    event: 'galeria_PEC',
+    CDCategory: 'Galería etapa final PEC',
+    CDAction: 'ver_foto',
+    CDFunnel: 'PE Etapa Final 2024',
+    CDValue: fullImageUrl // La URL completa de la imagen vista
+  });
+};

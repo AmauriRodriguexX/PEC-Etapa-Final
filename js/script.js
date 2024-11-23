@@ -400,18 +400,6 @@ if ($carouselLeftArrow) {
     event.preventDefault();
     event.stopPropagation(); // Evita la propagación del evento
 
-    // Registrar el evento en dataLayer
-    window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({
-      event: "gtm.click",
-      'gtm.elementClasses': $carouselLeftArrow.className,
-      'gtm.elementId': 'prev-button',
-      'gtm.elementTarget': '',
-      'gtm.triggers': '...', // Reemplaza con los IDs de los triggers si es necesario
-      'gtm.elementUrl': ''
-    });
-    console.log('DataLayer event pushed for prev-button');
-
     // Lógica existente del botón izquierdo
     currentIndex = currentIndex > 0 ? currentIndex - 1 : buttons.length - 1;
     updateSelectedButton();
@@ -430,20 +418,8 @@ if ($carouselRightArrow) {
     event.preventDefault();
     event.stopPropagation(); // Evita la propagación del evento
 
-    // Registrar el evento en dataLayer
-    window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({
-      event: "gtm.click",
-      'gtm.elementClasses': $carouselRightArrow.className,
-      'gtm.elementId': 'next-button',
-      'gtm.elementTarget': '',
-      'gtm.triggers': '...', // Reemplaza con los IDs de los triggers si es necesario
-      'gtm.elementUrl': ''
-    });
-    console.log('DataLayer event pushed for next-button');
-
     // Lógica existente del botón derecho
-    currentIndex = currentIndex < buttons.length - 1 ? currentIndex + 1 : 0;
+    currentIndex = (currentIndex + 1) % buttons.length;
     updateSelectedButton();
     updateGroupContent(
       buttons[currentIndex].textContent,
@@ -454,6 +430,7 @@ if ($carouselRightArrow) {
     );
   });
 }
+
 
 
 // Agrega eventos sin registrar en dataLayer

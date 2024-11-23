@@ -266,13 +266,17 @@
 
     <div class="carousel-container">
       <div class="carousel font-inter">
-        <button onclick="onChooseGroup('Participación familiar')" class="carousel-button"
+        <button onclick="onChooseGroup('Participación familiar', this)" class="carousel-button no-datalayer"
           data-group="Participacion_familiar">Participación familiar</button>
-        <button onclick="onChooseGroup('Comercio digital')" class="carousel-button"
+        <button onclick="onChooseGroup('Comercio digital', this)" class="carousel-button no-datalayer"
           data-group="Producción">Producción</button>
-        <button onclick="onChooseGroup('Servicio')" class="carousel-button" data-group="Servicio">Servicio</button>
-        <button onclick="onChooseGroup('Servicio')" class="carousel-button" data-group="Comercio">Comercio</button>
-      </div>
+        <button onclick="onChooseGroup('Servicio', this)" class="carousel-button no-datalayer"
+          data-group="Servicio">Servicio</button>
+        <button onclick="onChooseGroup('Servicio', this)" class="carousel-button no-datalayer"
+          data-group="Comercio">Comercio</button>
+    </div>
+    
+    
     </div>
 
     <div class="group">
@@ -679,8 +683,6 @@
       window.open(whatsappURL, "_blank", "width=600,height=400");
     }
   </script>
-  
-
   <!-- dots slider-->
   <script>
     document.addEventListener('DOMContentLoaded', function () {
@@ -823,7 +825,6 @@
     });
 
   </script>
-
   <!--Data layer compartir-->
   <script>
     document.addEventListener("DOMContentLoaded", function () {
@@ -872,8 +873,6 @@
       }
     });
   </script>
-
-
   <!--compartir media-->
   <script>
     (function () {
@@ -966,7 +965,6 @@
       window.shareInWhatsapp = shareInWhatsapp;
     })(); // IIFE para encapsular el código
   </script>
-  
   <!--compartir pagina-->
   <script>
     window.onload = function () {
