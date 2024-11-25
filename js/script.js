@@ -276,8 +276,8 @@ const groups = {
 var currentGroupData = [];
 document.addEventListener('DOMContentLoaded', async function () {
   const buttons = document.querySelectorAll('.carousel-button');
-  const prevButton = document.getElementById('prev-button');
-  const nextButton = document.getElementById('next-button');
+  const prevButton = document.getElementById('prev-group-button');
+  const nextButton = document.getElementById('next-group-button');
   let currentIndex = 0;
   const competitorGroup = document.querySelector('.competitor-group');
   currentGroupData = [];
@@ -391,8 +391,8 @@ function handleCompetitorClick(videoId, name, description, index, groupName, ima
 
 
 // Seleccionamos los botones del carrusel
-const $carouselLeftArrow = document.getElementById('prev-button');
-const $carouselRightArrow = document.getElementById('next-button');
+const $carouselLeftArrow = document.getElementById('prev-group-button');
+const $carouselRightArrow = document.getElementById('next-group-button');
 
 // Agregamos eventos a los botones del carrusel
 if ($carouselLeftArrow) {
