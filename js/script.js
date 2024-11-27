@@ -238,36 +238,36 @@ const groups = {
   Participacion_familiar: [
       {
           number: "1",
-          name: "Martha Ávalos",
-          image: "./assets/images/ganadores/martha.png",
+          name: "prueba 1",
+          image: "./assets/images/ganadores/ganador-4.png",
           description: "Su historia es un ejemplo de emprendimiento y unión familiar, a través de su negocio Martha inspira a muchas familias a luchar por sus sueños.",
-          videoId: "_a4ZYnZNgaw"
+          videoId: "XpRbNw1Nmgo"
       }
   ],
   Producción: [
     {
       number: "2",
-      name: "Julio Molina",
-      image: "./assets/images/ganadores/julio.png",
+      name: "prueba 2",
+      image: "./assets/images/ganadores/ganador-5.png",
       description: "Su historia nos confirma que el éxito de un negocio se basa en la convicción de creer que los sueños se pueden cumplir.",
-      videoId: "iMoSHxwZ3mU"
+      videoId: "-wXfRtdUmHU"
     }
   ],
   Servicio: [
     {
         number: "3",
-        name: "Patricia Beltrán",
-        image: "./assets/images/ganadores/patricia.png",
+        name: "prueba 3",
+        image: "./assets/images/ganadores/ganador-1.png",
         description: "Su historia es un ejemplo de servicio cálido y de excelencia. Patricia nos comparte la pasión que siente al atender a sus clientes y el amor que pone en cada platillo que prepara.",
-        videoId: "WtXq6drhODA"
+        videoId: "vPT6wT2dExs"
     }
   ],Comercio : [
     {
         number: "4",
-        name: "Divvani Lizárraga",
-        image: "./assets/images/ganadores/divvani.png",
+        name: "prueba 4",
+        image: "./assets/images/ganadores/ganador-6.png",
         description: "Su historia es un ejemplo de perseverancia y trabajo en equipo para lograr un negocio exitoso. Divanni nos inspira a siempre dar un extra.",
-        videoId: "eUwpz8ljxiM"
+        videoId: "-AgdijCss_c"
     }
   ]
 };

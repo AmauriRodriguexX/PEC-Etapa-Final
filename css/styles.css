@@ -2152,8 +2152,12 @@ footer address {
 }
 
 
-
-
+.img-responsive-person {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  display: block;
+}
 /* Estilos generales */
 .share_wrapper {
     position: relative;
