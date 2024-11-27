@@ -238,7 +238,7 @@ const groups = {
   Participacion_familiar: [
       {
           number: "1",
-          name: "prueba 1",
+          name: "Martha Ávalos ganadora de la categoría de participación del Premio Emprendedores 2024.",
           image: "./assets/images/ganadores/ganador-4.png",
           description: "Su historia es un ejemplo de emprendimiento y unión familiar, a través de su negocio Martha inspira a muchas familias a luchar por sus sueños.",
           videoId: "XpRbNw1Nmgo"
@@ -247,7 +247,7 @@ const groups = {
   Producción: [
     {
       number: "2",
-      name: "prueba 2",
+      name: "Julio Molina ganador de la categoría de producción del Premio Emprendedores 2024.",
       image: "./assets/images/ganadores/ganador-5.png",
       description: "Su historia nos confirma que el éxito de un negocio se basa en la convicción de creer que los sueños se pueden cumplir.",
       videoId: "-wXfRtdUmHU"
@@ -256,7 +256,7 @@ const groups = {
   Servicio: [
     {
         number: "3",
-        name: "prueba 3",
+        name: "Patricia Beltrán ganadora de la categoría de servicio del Premio Emprendedores 2024.",
         image: "./assets/images/ganadores/ganador-1.png",
         description: "Su historia es un ejemplo de servicio cálido y de excelencia. Patricia nos comparte la pasión que siente al atender a sus clientes y el amor que pone en cada platillo que prepara.",
         videoId: "vPT6wT2dExs"
@@ -264,7 +264,7 @@ const groups = {
   ],Comercio : [
     {
         number: "4",
-        name: "prueba 4",
+        name: "Divvani Lizárraga ganadora de la categoría de comercio del Premio Emprendedores 2024.",
         image: "./assets/images/ganadores/ganador-6.png",
         description: "Su historia es un ejemplo de perseverancia y trabajo en equipo para lograr un negocio exitoso. Divanni nos inspira a siempre dar un extra.",
         videoId: "-AgdijCss_c"
