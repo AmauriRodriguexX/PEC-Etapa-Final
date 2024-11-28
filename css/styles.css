@@ -1,5 +1,5 @@
-@import url("fonts.css");
-@import url("reset.css");
+@import url("fonts.min.css");
+@import url("reset.min.css");
 
 :root {
   --rust-red: #b83021;
