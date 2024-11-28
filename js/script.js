@@ -238,8 +238,9 @@ const groups = {
   Participacion_familiar: [
       {
           number: "1",
-          name: "Martha Ávalos ganadora de la categoría de participación del Premio Emprendedores 2024.",
+          name: "Martha Ávalos",
           image: "./assets/images/ganadores/ganador-4.png",
+          alt: "Martha Ávalos ganadora de la categoría de participación del Premio Emprendedores 2024",
           description: "Su historia es un ejemplo de emprendimiento y unión familiar, a través de su negocio Martha inspira a muchas familias a luchar por sus sueños.",
           videoId: "XpRbNw1Nmgo"
       }
@@ -247,8 +248,9 @@ const groups = {
   Producción: [
     {
       number: "2",
-      name: "Julio Molina ganador de la categoría de producción del Premio Emprendedores 2024.",
+      name: "Julio Molina",
       image: "./assets/images/ganadores/ganador-5.png",
+      alt: "Julio Molina ganador de la categoría de producción del Premio Emprendedores 2024.",
       description: "Su historia nos confirma que el éxito de un negocio se basa en la convicción de creer que los sueños se pueden cumplir.",
       videoId: "-wXfRtdUmHU"
     }
@@ -256,16 +258,18 @@ const groups = {
   Servicio: [
     {
         number: "3",
-        name: "Patricia Beltrán ganadora de la categoría de servicio del Premio Emprendedores 2024.",
+        name: "Patricia Beltrán",
         image: "./assets/images/ganadores/ganador-1.png",
+        alt: "Patricia Beltrán ganadora de la categoría de servicio del Premio Emprendedores 2024.",
         description: "Su historia es un ejemplo de servicio cálido y de excelencia. Patricia nos comparte la pasión que siente al atender a sus clientes y el amor que pone en cada platillo que prepara.",
         videoId: "vPT6wT2dExs"
     }
   ],Comercio : [
     {
         number: "4",
-        name: "Divvani Lizárraga ganadora de la categoría de comercio del Premio Emprendedores 2024.",
+        name: "Divvani Lizárraga",
         image: "./assets/images/ganadores/ganador-6.png",
+        alt: "Divvani Lizárraga ganadora de la categoría de comercio del Premio Emprendedores 2024.",
         description: "Su historia es un ejemplo de perseverancia y trabajo en equipo para lograr un negocio exitoso. Divanni nos inspira a siempre dar un extra.",
         videoId: "-AgdijCss_c"
     }
@@ -335,7 +339,7 @@ document.addEventListener('DOMContentLoaded', async function () {
       competitorGroup.innerHTML += `
         <div class="competitor">
           <div class="competitor-img" onclick="handleCompetitorClick('${competitor.videoId}', '${competitor.name}', '${competitor.description}', '${index}', '${groupName}', '${imageUrl}', '${videoUrl}');">
-            <img src="${imageUrl}" alt="${competitor.name}" width="150" height="60" />
+            <img src="${imageUrl}" alt="${competitor.alt}" width="150" height="60" />
           </div>
         </div>
         <div class="actions">
