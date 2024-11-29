@@ -15,7 +15,7 @@
   <meta name="robots" content="noindex">
   <title>¡Revive los momentos!. Premio Emprendedores Compartamos 2024</title>
   <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
-  <link rel="stylesheet" href="css/gallery.min.css" />
+  <link rel="stylesheet" href="css/gallery.css" />
   <link rel="canonical" href="https://www.compartamos.com.mx/Emprendedores/">
   <script src="https://www.youtube.com/iframe_api"></script>
   <!-- Google Tag Manager -->
@@ -66,7 +66,7 @@
       <div class="gallery">
         <div class="fullgallery-item">
           <img src="./assets/images/gallery-1.jpg" alt="Escenario del Premio Emprendedores 2024 con asistentes atentos."
-            onclick="openModalGallery(this)">
+            data-index="0" onclick="openModalGallery(this)">
         </div>
         <div class="fullgallery-item">
           <img src="./assets/images/gallery-2.jpg" alt="Finalistas del Premio Emprendedores 2024 mostrando trofeos."
@@ -208,6 +208,7 @@
             onclick="openModalGallery(this)">
         </div>
       </div>
+
     </div>
   </div>
   <div class="hr-container">
@@ -226,15 +227,15 @@
       <div id="right-arrow" class="nav-arrow right-arrow" onclick="nextImage()">&#8594;</div>
       <div id="gallery-share" class="gallery_share">
         <div class="download_container" onclick="download()">
-          <img src="./assets/images/download-icon.png" alt="Icono descargar" />
-          <span class="font-inter">Descargar</span>
+          <img src="./assets/images/download-icon.png" class="icon-size" alt="Icono descargar" />
+          <span class="font-inter">Descargar foto</span>
         </div>
         <div class="intersection"></div>
         <div class="share_wrapper">
           <div class="share_container"
             onclick="registrarEventoCompartirFoto('./assets/images/imagen_final_ganadores.png')">
-            <img src="./assets/images/share-icon.png" alt="Icono compartir" />
-            <span class="font-inter">Compartir</span>
+            <img src="./assets/images/share-icon.png" class="icon-size" alt="Icono compartir" />
+            <span class="font-inter">Compartir página</span>
           </div>
 
 
@@ -288,9 +289,11 @@
     </address>
   </footer>
 
-
-  <!-- Script para registrar eventos -->
   <script>
+    // Inicializar el dataLayer global si no está inicializado
+    window.dataLayer = window.dataLayer || [];
+    console.log("DataLayer inicializado:", window.dataLayer);
+
     // Función auxiliar para convertir URLs relativas en absolutas
     function getFullUrl(url) {
       return url.startsWith('http') || url.startsWith('//')
@@ -298,109 +301,146 @@
         : new URL(url, window.location.origin).href;
     }
 
-    // Evento para ganadores con ID anónimo
-    function registrarEventoGanadoresPEC2024(participantId, category, imageUrl, videoUrl) {
-      const fullImageUrl = getFullUrl(imageUrl);
-      const fullVideoUrl = getFullUrl(videoUrl);
-
-      dataLayer.push({
-        event: "ganadores_pec2024",
-        CDCategory: category, // Categoría de la región
-        CDAction: "conoce_mi_historia",
-        CDLabel: `participante_${participantId}`, // Etiqueta anónima
-        CDValue: fullVideoUrl, // URL completa del video
-        detail: fullImageUrl, // URL completa de la imagen del participante
-        CDFunnel: "PE Etapa Final 2024"
-      });
-    }
-
-    // Evento para categorías especiales con ID anónimo
-    function registrarEventoGanadoresPECCategoriasEspeciales(participantId, category, imageUrl, videoUrl) {
-      const fullImageUrl = getFullUrl(imageUrl);
-      const fullVideoUrl = getFullUrl(videoUrl);
-
-      dataLayer.push({
-        event: "ganadores_pec2024_categorias_especiales",
-        CDCategory: category,
-        CDAction: "conoce_mi_historia",
-        CDLabel: `participante_${participantId}`, // Etiqueta anónima
-        CDValue: fullVideoUrl, // URL completa del video
-        detail: fullImageUrl, // URL completa de la imagen del participante
-        CDFunnel: "PE Etapa Final 2024"
-      });
-    }
-
-    // Encapsulamos en un IIFE para evitar conflictos globales
+    // Encapsular lógica de la galería
     (function () {
-      // Verificamos si el objeto de nuestra aplicación ya existe
+      // Espacio de nombres para la galería
       window.miAplicacion = window.miAplicacion || {};
+      miAplicacion.galeria = {};
+
+      // Función para registrar el evento "ver foto" en el dataLayer
+      miAplicacion.galeria.registrarEventoVerFoto = function (imageUrl, imageIndex) {
+        const fullImageUrl = getFullUrl(imageUrl);
+        console.log("Registrando evento de ver foto:", fullImageUrl);
+
+        // Registrar el evento en el dataLayer
+        window.dataLayer.push({
+          event: "galeria_PEC",
+          CDCategory: "Galería etapa final PEC",
+          CDAction: "ver_foto",
+          CDLabel: `imagen_${imageIndex}`,
+          CDFunnel: "PE Etapa Final 2024",
+          CDValue: fullImageUrl
+        });
+
+        console.log("Evento registrado en el dataLayer:", window.dataLayer);
+      };
+
+      // Función para abrir el modal y registrar el evento
+      miAplicacion.galeria.openModalGallery = function (imageElement) {
+        const imageUrl = imageElement.getAttribute('src'); // Obtener la URL de la imagen
+        const imageIndex = imageElement.getAttribute('data-index'); // Obtener el índice de la imagen
+        console.log("Abriendo modal para imagen:", imageUrl, "Índice:", imageIndex);
+
+        // Registrar evento de "ver foto"
+        miAplicacion.galeria.registrarEventoVerFoto(imageUrl, imageIndex);
+
+        // Mostrar la imagen seleccionada en el modal
+        const modal = document.getElementById("gallery-view-modal");
+        const galleryImage = document.getElementById("gallery-image");
+
+        galleryImage.setAttribute("src", imageUrl);
+        galleryImage.setAttribute("data-index", imageIndex);
+        modal.style.display = "block";
+      };
+
+      // Funciones de navegación y cierre del modal
+      miAplicacion.galeria.nextImage = function () {
+        // ... (implementación de nextImage)
+      };
+
+      miAplicacion.galeria.prevImage = function () {
+        // ... (implementación de prevImage)
+      };
+
+      miAplicacion.galeria.closeModalGallery = function () {
+        const modal = document.getElementById("gallery-view-modal");
+        modal.style.display = "none";
+      };
+
+      // Exponer funciones globalmente para uso en HTML
+      window.openModalGallery = miAplicacion.galeria.openModalGallery;
+      window.nextImage = miAplicacion.galeria.nextImage;
+      window.prevImage = miAplicacion.galeria.prevImage;
+      window.closeModalGallery = miAplicacion.galeria.closeModalGallery;
+    })();
+  </script>
+  
+  <script>
+    // Encapsular lógica de la galería
+    (function () {
+      // Espacio de nombres para la galería
+      window.miAplicacion = window.miAplicacion || {};
+      miAplicacion.galeria = miAplicacion.galeria || {};
 
       // Función auxiliar para convertir URLs relativas en absolutas
-      window.miAplicacion.getFullUrl = function (url) {
+      function getFullUrl(url) {
         return url.startsWith('http') || url.startsWith('//')
           ? url
           : new URL(url, window.location.origin).href;
-      };
+      }
 
-      // Función para registrar el evento de ver foto
-      window.miAplicacion.registrarEventoVerFoto = function (imageUrl) {
-        const fullImageUrl = miAplicacion.getFullUrl(imageUrl);
+      // Función para registrar el evento "ver foto" en el dataLayer
+      miAplicacion.galeria.registrarEventoVerFoto = function (imageUrl, imageIndex) {
+        const fullImageUrl = getFullUrl(imageUrl);
+        console.log("Registrando evento de ver foto:", fullImageUrl);
 
-        window.dataLayer = window.dataLayer || [];
+        // Registrar el evento en el dataLayer
         window.dataLayer.push({
-          event: 'galeria_PEC',
-          CDCategory: 'Galería etapa final PEC',
-          CDAction: 'ver_foto',
-          CDFunnel: 'PE Etapa Final 2024',
-          CDValue: fullImageUrl // La URL completa de la imagen vista
+          event: "galeria_PEC",
+          CDCategory: "Galería etapa final PEC",
+          CDAction: "ver_foto",
+          CDLabel: `imagen_${imageIndex}`,
+          CDFunnel: "PE Etapa Final 2024",
+          CDValue: fullImageUrl
         });
+
+        // Agrega este console.log para verificar el dataLayer
+        console.log("Estado actual del dataLayer:", window.dataLayer);
       };
 
-      // Tu función openModalGallery ajustada
-      window.miAplicacion.openModalGallery = function (imageElement) {
-        const imageUrl = imageElement.getAttribute('src');
-        const fullImageUrl = miAplicacion.getFullUrl(imageUrl);
+      // Función para abrir el modal y registrar el evento
+      miAplicacion.galeria.openModalGallery = function (imageElement) {
+        const imageUrl = imageElement.getAttribute('src'); // Obtener la URL de la imagen
+        const imageIndex = imageElement.getAttribute('data-index'); // Obtener el índice de la imagen
+        console.log("Abriendo modal para imagen:", imageUrl, "Índice:", imageIndex);
 
-        miAplicacion.registrarEventoVerFoto(fullImageUrl);
+        // Registrar evento de "ver foto"
+        miAplicacion.galeria.registrarEventoVerFoto(imageUrl, imageIndex);
 
-        // Código para mostrar el modal...
+        // Mostrar la imagen seleccionada en el modal
+        const modal = document.getElementById("gallery-view-modal");
+        const galleryImage = document.getElementById("gallery-image");
+
+        galleryImage.setAttribute("src", imageUrl);
+        galleryImage.setAttribute("data-index", imageIndex);
+        modal.style.display = "block";
       };
 
-      // Exponemos las funciones necesarias
-      window.openModalGallery = miAplicacion.openModalGallery;
+      // Funciones de navegación y cierre del modal
+      miAplicacion.galeria.nextImage = function () {
+        // ... (implementación de nextImage)
+      };
 
+      miAplicacion.galeria.prevImage = function () {
+        // ... (implementación de prevImage)
+      };
+
+      miAplicacion.galeria.closeModalGallery = function () {
+        const modal = document.getElementById("gallery-view-modal");
+        modal.style.display = "none";
+      };
+
+      // Exponer funciones globalmente para uso en HTML
+      window.openModalGallery = miAplicacion.galeria.openModalGallery;
+      window.nextImage = miAplicacion.galeria.nextImage;
+      window.prevImage = miAplicacion.galeria.prevImage;
+      window.closeModalGallery = miAplicacion.galeria.closeModalGallery;
     })();
-
-
-    // Evento para descargar una foto en galería
-    function registrarEventoDescargarFoto(imageUrl) {
-      const fullImageUrl = getFullUrl(imageUrl);
-
-      dataLayer.push({
-        event: 'galeria_PEC',
-        CDCategory: 'Galería etapa final PEC',
-        CDAction: 'descargar_foto',
-        CDFunnel: 'PE Etapa Final 2024',
-        CDValue: fullImageUrl // URL completa de la imagen
-      });
-    }
-
-    // Evento para compartir contenido
-    function registrarEventoCompartirFoto(imageUrl) {
-      const fullImageUrl = getFullUrl(imageUrl);
-
-      dataLayer.push({
-        event: 'galeria_PEC',
-        CDCategory: 'Galería etapa final PEC',
-        CDAction: 'compartir_foto',
-        CDFunnel: 'PE Etapa Final 2024',
-        CDValue: fullImageUrl // URL completa de la imagen compartida
-      });
-      console.log("Evento compartir registrado en el dataLayer.");
-    }
   </script>
+  
+  
   <script src="js/gallery.min.js"></script>
-  <script src="js/gallery-events.min.js"></script>
+  <script src="js/gallery-events.js"></script>
 </body>
 
 </html>
