@@ -289,101 +289,28 @@
     </address>
   </footer>
 
-  <script>
-    // Inicializar el dataLayer global si no está inicializado
+  <script>// Inicializar el dataLayer global si no está inicializado
     window.dataLayer = window.dataLayer || [];
     console.log("DataLayer inicializado:", window.dataLayer);
-
+    
     // Función auxiliar para convertir URLs relativas en absolutas
     function getFullUrl(url) {
       return url.startsWith('http') || url.startsWith('//')
         ? url
         : new URL(url, window.location.origin).href;
     }
-
-    // Encapsular lógica de la galería
-    (function () {
-      // Espacio de nombres para la galería
-      window.miAplicacion = window.miAplicacion || {};
-      miAplicacion.galeria = {};
-
-      // Función para registrar el evento "ver foto" en el dataLayer
-      miAplicacion.galeria.registrarEventoVerFoto = function (imageUrl, imageIndex) {
-        const fullImageUrl = getFullUrl(imageUrl);
-        console.log("Registrando evento de ver foto:", fullImageUrl);
-
-        // Registrar el evento en el dataLayer
-        window.dataLayer.push({
-          event: "galeria_PEC",
-          CDCategory: "Galería etapa final PEC",
-          CDAction: "ver_foto",
-          CDLabel: `imagen_${imageIndex}`,
-          CDFunnel: "PE Etapa Final 2024",
-          CDValue: fullImageUrl
-        });
-
-        console.log("Evento registrado en el dataLayer:", window.dataLayer);
-      };
-
-      // Función para abrir el modal y registrar el evento
-      miAplicacion.galeria.openModalGallery = function (imageElement) {
-        const imageUrl = imageElement.getAttribute('src'); // Obtener la URL de la imagen
-        const imageIndex = imageElement.getAttribute('data-index'); // Obtener el índice de la imagen
-        console.log("Abriendo modal para imagen:", imageUrl, "Índice:", imageIndex);
-
-        // Registrar evento de "ver foto"
-        miAplicacion.galeria.registrarEventoVerFoto(imageUrl, imageIndex);
-
-        // Mostrar la imagen seleccionada en el modal
-        const modal = document.getElementById("gallery-view-modal");
-        const galleryImage = document.getElementById("gallery-image");
-
-        galleryImage.setAttribute("src", imageUrl);
-        galleryImage.setAttribute("data-index", imageIndex);
-        modal.style.display = "block";
-      };
-
-      // Funciones de navegación y cierre del modal
-      miAplicacion.galeria.nextImage = function () {
-        // ... (implementación de nextImage)
-      };
-
-      miAplicacion.galeria.prevImage = function () {
-        // ... (implementación de prevImage)
-      };
-
-      miAplicacion.galeria.closeModalGallery = function () {
-        const modal = document.getElementById("gallery-view-modal");
-        modal.style.display = "none";
-      };
-
-      // Exponer funciones globalmente para uso en HTML
-      window.openModalGallery = miAplicacion.galeria.openModalGallery;
-      window.nextImage = miAplicacion.galeria.nextImage;
-      window.prevImage = miAplicacion.galeria.prevImage;
-      window.closeModalGallery = miAplicacion.galeria.closeModalGallery;
-    })();
-  </script>
-  
-  <script>
+    
     // Encapsular lógica de la galería
     (function () {
       // Espacio de nombres para la galería
       window.miAplicacion = window.miAplicacion || {};
       miAplicacion.galeria = miAplicacion.galeria || {};
-
-      // Función auxiliar para convertir URLs relativas en absolutas
-      function getFullUrl(url) {
-        return url.startsWith('http') || url.startsWith('//')
-          ? url
-          : new URL(url, window.location.origin).href;
-      }
-
+    
       // Función para registrar el evento "ver foto" en el dataLayer
       miAplicacion.galeria.registrarEventoVerFoto = function (imageUrl, imageIndex) {
         const fullImageUrl = getFullUrl(imageUrl);
         console.log("Registrando evento de ver foto:", fullImageUrl);
-
+    
         // Registrar el evento en el dataLayer
         window.dataLayer.push({
           event: "galeria_PEC",
@@ -393,51 +320,98 @@
           CDFunnel: "PE Etapa Final 2024",
           CDValue: fullImageUrl
         });
-
-        // Agrega este console.log para verificar el dataLayer
-        console.log("Estado actual del dataLayer:", window.dataLayer);
+    
+        console.log("Evento registrado en el dataLayer:", window.dataLayer);
       };
-
+    
+      // Variables globales para la galería
+      let currentIndex = 0;
+      const $galleryItems = document.querySelectorAll('.fullgallery-item img');
+      const $modalViewGallery = document.getElementById("gallery-view-modal");
+      const $modalImg = document.getElementById('gallery-image');
+      const $leftArrow = document.getElementById('left-arrow');
+      const $rightArrow = document.getElementById('right-arrow');
+      const totalImages = $galleryItems.length;
+    
+      // Añadir evento de clic a cada imagen de la galería
+      $galleryItems.forEach((img, index) => {
+        img.addEventListener('click', function() {
+          miAplicacion.galeria.openModalGallery(this, index);
+        });
+      });
+    
       // Función para abrir el modal y registrar el evento
-      miAplicacion.galeria.openModalGallery = function (imageElement) {
-        const imageUrl = imageElement.getAttribute('src'); // Obtener la URL de la imagen
-        const imageIndex = imageElement.getAttribute('data-index'); // Obtener el índice de la imagen
+      miAplicacion.galeria.openModalGallery = function (imageElement, index) {
+        const imageUrl = imageElement.getAttribute('src');
+        const imageIndex = index;
         console.log("Abriendo modal para imagen:", imageUrl, "Índice:", imageIndex);
-
+    
         // Registrar evento de "ver foto"
         miAplicacion.galeria.registrarEventoVerFoto(imageUrl, imageIndex);
-
-        // Mostrar la imagen seleccionada en el modal
-        const modal = document.getElementById("gallery-view-modal");
-        const galleryImage = document.getElementById("gallery-image");
-
-        galleryImage.setAttribute("src", imageUrl);
-        galleryImage.setAttribute("data-index", imageIndex);
-        modal.style.display = "block";
+    
+        // Actualizar el índice actual y mostrar la imagen en el modal
+        currentIndex = imageIndex;
+        updateImageIndex();
+        $modalImg.src = imageUrl;
+        $modalViewGallery.style.display = "block";
+        updateGalleryArrow(currentIndex);
       };
-
-      // Funciones de navegación y cierre del modal
-      miAplicacion.galeria.nextImage = function () {
-        // ... (implementación de nextImage)
-      };
-
-      miAplicacion.galeria.prevImage = function () {
-        // ... (implementación de prevImage)
-      };
-
+    
+      // Función para cerrar el modal
       miAplicacion.galeria.closeModalGallery = function () {
-        const modal = document.getElementById("gallery-view-modal");
-        modal.style.display = "none";
+        if ($modalViewGallery) {
+          $modalViewGallery.style.display = "none";
+        }
       };
-
+    
+      // Función para actualizar el índice de la imagen
+      function updateImageIndex() {
+        const $imageIndex = document.getElementById('imageIndex');
+        $imageIndex.textContent = `${currentIndex + 1} / ${totalImages}`;
+      }
+    
+      // Funciones de navegación
+      miAplicacion.galeria.prevImage = function () {
+        if (currentIndex > 0) {
+          currentIndex--;
+          const prevImage = $galleryItems[currentIndex];
+          miAplicacion.galeria.openModalGallery(prevImage, currentIndex);
+        }
+      };
+    
+      miAplicacion.galeria.nextImage = function () {
+        if (currentIndex < totalImages - 1) {
+          currentIndex++;
+          const nextImage = $galleryItems[currentIndex];
+          miAplicacion.galeria.openModalGallery(nextImage, currentIndex);
+        }
+      };
+    
+      // Función para actualizar las flechas de navegación
+      function updateGalleryArrow(index) {
+        if (index === 0) {
+          $leftArrow.classList.remove('active');
+          $leftArrow.classList.add('inactive');
+        } else {
+          $leftArrow.classList.remove('inactive');
+          $leftArrow.classList.add('active');
+        }
+        if (index === totalImages - 1) {
+          $rightArrow.classList.remove('active');
+          $rightArrow.classList.add('inactive');
+        } else {
+          $rightArrow.classList.remove('inactive');
+          $rightArrow.classList.add('active');
+        }
+      }
+    
       // Exponer funciones globalmente para uso en HTML
       window.openModalGallery = miAplicacion.galeria.openModalGallery;
-      window.nextImage = miAplicacion.galeria.nextImage;
-      window.prevImage = miAplicacion.galeria.prevImage;
       window.closeModalGallery = miAplicacion.galeria.closeModalGallery;
+      window.prevImage = miAplicacion.galeria.prevImage;
+      window.nextImage = miAplicacion.galeria.nextImage;
     })();
-  </script>
-  
+    </script>
   
   <script src="js/gallery.min.js"></script>
   <script src="js/gallery-events.js"></script>
