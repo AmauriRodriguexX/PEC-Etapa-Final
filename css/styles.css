@@ -173,6 +173,12 @@ span{
   line-height: 1.75rem;
 }
 
+@media (max-width: 768px) { /* Ajusta el ancho según lo que definas como mobile */
+  span {
+      font-size: 14px;
+  }
+}
+
 main .img-container {
   order: 1;
   overflow: visible;
@@ -2169,7 +2175,6 @@ footer address {
 .share_container img {
     width: 20px;
     height: 20px;
-    margin-right: 8px;
 }
 
 
@@ -2228,4 +2233,26 @@ footer address {
 
 .space-social  {
   margin-bottom: 8px;
+}
+
+.icon-size {
+  width: 24px !important;
+}
+
+@media (max-width: 768px) { /* Ajusta el ancho según lo que definas como mobile */
+  .icon-size {
+      width: 16px !important;
+  }
+}
+
+@media (max-width: 768px) { /* Ajusta el ancho según tus necesidades */
+  #gallery-view-modal .modal_content .gallery_share .share_wrapper .share_container {
+      padding: 20px 8px; /* Cambia solo los valores laterales a 4px */
+  }
+}
+
+@media (max-width: 768px) { /* Ajusta el ancho según tus necesidades */
+  #gallery-view-modal .modal_content .gallery_share .download_container {
+      padding: 20px 8px; /* Cambia los valores laterales a 4px */
+  }
 }
